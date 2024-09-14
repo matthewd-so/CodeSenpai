@@ -68,3 +68,6 @@ interface Submission {
 }
 
 type Sort = "asc" | "des" | "";
+
+declare module "*.jpg";
+declare module "*.png";
