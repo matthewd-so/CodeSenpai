@@ -7,6 +7,14 @@ import Loading from "../components/Loading";
 import MainHeading from "../components/MainHeading";
 import { TypeAnimation } from "react-type-animation";
 import girlImg from "../images/girlalone.png";
+import girlSmiling from "../images/grl-smiling.png";
+import { render } from "react-dom";
+
+enum Stage {
+    Intorduction,
+    Motivation,
+    Promise,
+}
 
 const LandingPage = ({
     token,
@@ -15,9 +23,93 @@ const LandingPage = ({
     token: string | null;
     id: string | null;
 }) => {
+    const [currentStage, setCurrentStage] = useState<Stage>(Stage.Intorduction);
     const [username, setUsername] = useState<string>("");
     const [verified, setVerified] = useState<boolean>(false);
+
     const [verifiedCertain, setVerifiedCertain] = useState<boolean>(false);
+
+    const renderContent = () => {
+        switch (currentStage) {
+            case Stage.Intorduction:
+                return (
+                    <>
+                        <img
+                            src={girlImg}
+                            alt="Your anime wifu"
+                            className="h-[400px]"
+                        />
+                        <p className="text-center mt-0 mb-0 font-suse text-7xl text-black">
+                            Code Senpai
+                        </p>
+                        <p className="text-center mt-0 font-suse text-2xl w-full text-black">
+                            Your AI-GF that will make you employed and feel
+                            loved!
+                        </p>
+                        <button
+                            className="bg-[#B3A1CF] font-suse text-black py-[10px] px-[40px] font-semibold rounded-[30px] border border-black"
+                            onClick={() => setCurrentStage(Stage.Motivation)}
+                        >
+                            Let's meet!
+                        </button>
+                    </>
+                );
+            case Stage.Motivation:
+                return (
+                    <>
+                        <img
+                            src={girlSmiling}
+                            alt="Your anime wifu smiling"
+                            className="h-[400px]"
+                        />
+                        <div
+                            className="bg-[#B3A1CF]/50 border-4 text-2xl  border-[#E3A6D1] py-6 mb-0 font-suse text-violet-900 text-bold 
+                        px-6 "
+                        >
+                            <p>
+                                Hi, I’m Lia, but you can call me Code-Senpai! I
+                                want to be a Software Engineer and I love
+                                problem solving, but sometimes it get's lonely..
+                                <br></br>You look cute! Tell me about yourself!
+                            </p>
+                        </div>
+                        <p className="text-xl mb-4">
+                            Let's start our coding journey together.
+                        </p>
+
+                        <button
+                            className="bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black"
+                            onClick={() => setCurrentStage(Stage.Promise)}
+                        >
+                            Next Step
+                        </button>
+                    </>
+                );
+            case Stage.Promise:
+                return (
+                    <div className="text-center">
+                        <h2 className="text-4xl font-bold mb-4">
+                            Ready to Code?
+                        </h2>
+                        <p className="text-xl mb-4">
+                            Let's dive into some coding challenges!
+                        </p>
+                        <div className="space-y-4">
+                            <button className="bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black w-full">
+                                Easy Challenge
+                            </button>
+                            <button className="bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black w-full">
+                                Medium Challenge
+                            </button>
+                            <button className="bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black w-full">
+                                Hard Challenge
+                            </button>
+                        </div>
+                    </div>
+                );
+        }
+    };
+
     useEffect(() => {
         if (!id) {
             setVerified(false);
@@ -108,31 +200,7 @@ const LandingPage = ({
                 <> */}
 
             <div className="absolute flex flex-col items-center justify-center space-y-6   z-50 inset-0 mx-auto">
-                <img
-                    src={girlImg}
-                    alt="Your anime wifu"
-                    className="h-[400px]"
-                />
-                {/* 
-                <p className="absolute md:w-1/2 w-3/4 text-center mx-auto mt-[50px] z-50 inset-0 top-[300px]">
-                    Code Senpai
-                </p> */}
-                <p className="text-center mt-0 mb-0 font-suse text-7xl  text-black">
-                    Code Senpai
-                </p>
-                <p className="text-center mt-0 font-suse text-2xl w-full  text-black  ">
-                    Your AI-GF that will make you employed and feel loved!
-                </p>
-                <div className=" top-[500px] left-1/2 z-50">
-                    <Link
-                        to="/problemset"
-                        className=" relative ml-[8px] font-bold inline-block from-orange-500 to-red-600 rounded-md text-black text-[18px]"
-                    >
-                        <div className="w-full h-full bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black">
-                            Let's meet!
-                        </div>
-                    </Link>
-                </div>
+                {renderContent()}
             </div>
 
             <div />
