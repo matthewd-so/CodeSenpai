@@ -1,6 +1,6 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 
-const apiKey = process.env.REACT_APP_ANTHROPIC_API_KEY;
+const apiKey = process.env.ANTHROPIC_API_KEY || '';
 
 if (!apiKey) {
   console.error('Anthropic API key is not set. Please check your environment configuration.');
@@ -29,18 +29,16 @@ When helping with coding problems:
 Remember to use best practices in your coding advice and explanations.
 `;
 
-export const getClaudeResponse = async (message: string): Promise<string> => {
+export async function getClaudeResponse(message: string): Promise<string> {
   try {
     const response = await anthropic.messages.create({
-      model: 'claude-3-sonnet-20240229',
+      model: "claude-3-sonnet-20240229",
       max_tokens: 1000,
+      system: SYSTEM_PROMPT,
       messages: [
-        { role: 'assistant', content: SYSTEM_PROMPT },
-        { role: 'user', content: message }
+        { role: "user", content: message }
       ],
     });
-
-    console.log('Usage:', response.usage);
 
     const textContent = response.content.find(c => c.type === 'text');
     if (textContent && 'text' in textContent) {
@@ -49,18 +47,10 @@ export const getClaudeResponse = async (message: string): Promise<string> => {
       throw new Error('Unexpected response format from Claude AI API');
     }
   } catch (error) {
-    if (error instanceof Anthropic.APIError) {
-      console.error('API Error:', error.status, error.name, error.message);
-      console.error('Error details:', error.error);
-      if (error.name === 'AuthenticationError') {
-        throw new Error('There was an authentication error. Please check your API key.');
-      }
-    } else {
-      console.error('Unexpected error:', error);
-    }
-    throw new Error("I apologize, but I'm having trouble connecting right now. Please try again later, and don't worry - we'll solve your coding challenge together!");
+    console.error('Error in getClaudeResponse:', error);
+    throw error;
   }
-};
+}
 
 // Example usage
 async function main() {

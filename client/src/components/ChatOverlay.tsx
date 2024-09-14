@@ -72,7 +72,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
       {isOpen && (
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-80 h-96 flex flex-col border border-pink-300 dark:border-pink-700">
           <div className="bg-pink-400 dark:bg-pink-600 text-white p-4 rounded-t-lg flex justify-between items-center">
-            <h3 className="font-bold text-lg">Chat with Chloe</h3>
+            <h3 className="font-bold text-lg">Chat with Lia</h3>
             <button onClick={toggleChat} aria-label="Close chat" className="text-white hover:text-pink-100">
               <X size={24} />
             </button>
