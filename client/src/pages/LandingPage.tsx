@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import MainHeading from "../components/MainHeading";
 import { TypeAnimation } from "react-type-animation";
+import girlImg from "../images/girlalone.png";
 
 const LandingPage = ({
     token,
@@ -60,7 +61,7 @@ const LandingPage = ({
                     }}
                 />
             )}
-            <div className="w-[100vw] overflow-hidden h-[calc(100vh-60px)] absolute bg-white">
+            <div className="w-[100vw] h-[100vh] overflow-hidden h-[calc(100vh-60px)] absolute bg-white">
                 <div className="circle-1-animation absolute top-[6%] left-[55%] -translate-x-1/2 w-[500px] h-[500px] rounded-full filter blur-[99px] bg-gradient-to-br from-transparent to-indigo-500 opacity-60 z-10"></div>
                 <div className="absolute circle-2-animation top-[8%] left-[45%] -translate-x-1/2 w-[500px] h-[500px] rounded-full filter blur-[99px] bg-gradient-to-br from-transparent to-pink-500 opacity-60 z-10"></div>
                 <div className="absolute circle-3-animation top-[10%] left-[45%] -translate-x-1/2 w-[400px] h-[300px] rounded-full filter blur-[99px] bg-gradient-to-br from-transparent to-yellow-200 opacity-60 z-10"></div>
@@ -106,21 +107,27 @@ const LandingPage = ({
             ) : verifiedCertain === true && verified === false ? (
                 <> */}
 
-            <p className="absolute md:w-1/2 w-3/4 text-center mx-auto mt-[50px] z-50 inset-0 top-[300px]">
-                Reach the pinnacle of your coding potential with FireCode.
-                Elevate your skills, conquer challenges, and excel in technical
-                interviews, propelling your programming journey to new heights.
-            </p>
-            <div className=" absolute top-[500px] left-1/2 -translate-x-1/2 z-50">
-                <Link
-                    to="/signup"
-                    className=" relative ml-[8px] font-bold inline-block from-orange-500 to-red-600 rounded-md text-black text-[18px] hover:bg-red-800"
-                >
-                    <div className="w-full h-full bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black hover:bg-[#00000000] hover:border-[#00000000] hover:text-black transition active:bg-red-700">
-                        Let's meet!
-                    </div>
-                </Link>
+            <div className="absolute flex flex-col items-center space-y-6 max-w-md  z-50 inset-0 mx-auto mt-16 gap-2">
+                <img src={girlImg} alt="Your anime wifu" />
+                {/* 
+                <p className="absolute md:w-1/2 w-3/4 text-center mx-auto mt-[50px] z-50 inset-0 top-[300px]">
+                    Code Senpai
+                </p> */}
+                <p className="text-center mt-0 font-suse text-7xl  text-black  ">
+                    Code Senpai
+                </p>
+                <div className=" top-[500px] left-1/2 z-50">
+                    <Link
+                        to="/signup"
+                        className=" relative ml-[8px] font-bold inline-block from-orange-500 to-red-600 rounded-md text-black text-[18px]"
+                    >
+                        <div className="w-full h-full bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black">
+                            Let's meet!
+                        </div>
+                    </Link>
+                </div>
             </div>
+
             <div />
         </div>
     );

@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import Tooltip from "./Tooltip";
-import SidePanel from "./SidePanel";
 import Notification from "./Notification";
+import SidePanel from "./SidePanel";
+import Tooltip from "./Tooltip";
+import { useState } from "react";
 
 const MainHeading = ({ data }: { data?: MainHeadingData }) => {
     const [sidePanelState, setSidePanelState] = useState<boolean>(false);
@@ -10,7 +10,7 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
 
     return (
         <>
-            <div className="fixed w-full h-[60px] bg-black border-b border-borders flex felx-row z-[100]">
+            {/* <div className="fixed w-full h-[60px] bg-black border-b border-borders flex felx-row z-[100]">
                 <Link to="/" className=" select-none">
                     <div
                         id="logo-cont"
@@ -86,8 +86,8 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
                 ) : (
                     <></>
                 )}
-            </div>
-            <div className="h-[60px]"></div>
+            </div> */}
+            {/* <div className="h-[60px]"></div> */}
         </>
     );
 };

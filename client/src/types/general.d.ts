@@ -163,3 +163,6 @@ interface Submission {
     expected_output?: string;
     user_output?: string;
 }
+
+declare module "*.jpg";
+declare module "*.png";
