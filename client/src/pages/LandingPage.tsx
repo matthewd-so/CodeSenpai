@@ -129,7 +129,7 @@ const LandingPage = ({
                     </h1>
                     <p className="absolute md:w-1/2 w-3/4 text-center mx-auto mt-[50px] z-50 inset-0 top-[300px]">
                         Reach the pinnacle of your coding potential with
-                        FireCode. Elevate your skills, conquer challenges, and
+                        CodeSenpai. Elevate your skills, conquer challenges, and
                         excel in technical interviews, propelling your
                         programming journey to new heights.
                     </p>
