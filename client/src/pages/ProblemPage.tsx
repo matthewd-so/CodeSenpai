@@ -1,9 +1,8 @@
-import React, { SetStateAction, useEffect, useRef } from "react";
-import { useState } from "react";
+import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError } from "axios";
 import ProblemNavbar from "../components/ProblemNavbar";
 import ProblemDescription from "../components/ProblemDescription";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,6 +11,12 @@ import MainHeading from "../components/MainHeading";
 import Submissions from "../components/Submissions";
 import { API_URL } from "../App";
 import Loading from "../components/Loading";
+import ChatOverlay from "../components/ChatOverlay";
+
+// Add this interface above the ProblemPage component
+interface ChatOverlayProps {
+  problemContext?: string;
+}
 
 const ProblemPage = ({
     data,
@@ -263,6 +268,7 @@ const ProblemPage = ({
                     </div>
                 </div>
             </div>
+            <ChatOverlay />
         </>
     );
 };
