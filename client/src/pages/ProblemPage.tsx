@@ -246,7 +246,7 @@ const ProblemPage = ({
                     </div>
                 </div>
             </div>
-            <ChatOverlay />
+            <ChatOverlay problemContext={problemDescriptionData}/>
 
             {/* Inline Styling for the Example Boxes */}
             <style>{`

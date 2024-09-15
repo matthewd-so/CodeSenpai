@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, KeyboardEvent, ChangeEvent } from 'react';
 import { Send, X, MessageCircle } from 'lucide-react';
-import { getClaudeResponse } from '../servers/Claude';
+import { getClaudeChatResponse } from '../servers/Claude';
 
 interface ChatOverlayProps {
-  problemContext?: string;
+  problemContext?: DescriptionData;
 }
 
 interface Message {
@@ -18,6 +18,8 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  console.log(problemContext);
+
   const toggleChat = (): void => setIsOpen(!isOpen);
 
   const sendMessage = async (): Promise<void> => {
@@ -29,7 +31,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
     setIsLoading(true);
 
     try {
-      const response: string = await getClaudeResponse(inputMessage);
+      const response: string = await getClaudeChatResponse(inputMessage);
       const botResponse: Message = { text: response, sender: 'bot' };
       setMessages(prevMessages => [...prevMessages, botResponse]);
     } catch (error) {
@@ -64,21 +66,21 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
         <button
           onClick={toggleChat}
           aria-label="Open chat"
-          className="bg-red-300 dark:bg-pink-600 text-white p-3 rounded-full shadow-lg hover:bg-pink-400 dark:hover:bg-pink-700 transition-colors duration-300 ease-in-out"
+          className="p-3 text-white transition-colors duration-300 ease-in-out bg-red-300 rounded-full shadow-lg dark:bg-pink-600 hover:bg-pink-400 dark:hover:bg-pink-700"
 
         >
           <MessageCircle size={24} />
         </button>
       )}
       {isOpen && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-80 h-96 flex flex-col border border-pink-300 dark:border-pink-700">
-          <div className="bg-pink-400 dark:bg-pink-600 text-white p-4 rounded-t-lg flex justify-between items-center">
-            <h3 className="font-bold text-lg">Chat with Lia</h3>
+        <div className="flex flex-col bg-white border border-pink-300 rounded-lg shadow-xl dark:bg-gray-800 w-80 h-96 dark:border-pink-700">
+          <div className="flex items-center justify-between p-4 text-white bg-pink-400 rounded-t-lg dark:bg-pink-600">
+            <h3 className="text-lg font-bold">Chat with Lia</h3>
             <button onClick={toggleChat} aria-label="Close chat" className="text-white hover:text-pink-100">
               <X size={24} />
             </button>
           </div>
-          <div className="flex-grow overflow-y-auto p-4 bg-pink-50 dark:bg-gray-800">
+          <div className="flex-grow p-4 overflow-y-auto bg-pink-50 dark:bg-gray-800">
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -99,7 +101,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
             ))}
             <div ref={messagesEndRef} />
           </div>
-          <div className="p-4 border-t border-pink-300 dark:border-pink-700 bg-white dark:bg-gray-800">
+          <div className="p-4 bg-white border-t border-pink-300 dark:border-pink-700 dark:bg-gray-800">
             <div className="flex">
               <input
                 type="text"
@@ -108,7 +110,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
                 onKeyPress={handleKeyPress}
                 placeholder="Type a message..."
                 aria-label="Chat message"
-                className="flex-grow p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-pink-600 border-pink-300 dark:border-pink-700 bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
+                className="flex-grow p-2 text-gray-800 bg-white border border-pink-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-pink-600 dark:border-pink-700 dark:bg-gray-700 dark:text-white"
                 disabled={isLoading}
               />
               <button

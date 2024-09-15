@@ -23,6 +23,7 @@ interface DescriptionData {
     related_topics: string[];
     similar_questions: string[];
     solution_count: number;
+    money: number;
 }
 
 interface EditorialData {
@@ -61,6 +62,7 @@ interface User {
     views: number;
     solution_count: number;
     reputation_count: number;
+    money: number;
 }
 
 interface PublicUser {
