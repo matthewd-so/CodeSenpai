@@ -32,8 +32,8 @@ const Submissions = ({ data, problemName, goal }: SubmissionsDataProps) => {
     const status = data.submissions_list[0].status;
     useEffect(() => {
         if (status === "Accepted") {
-            makeLiaSpeak(`Yay! You solved ${problemName}!... 
-                You're getting so good at ${goal}! 
+            makeLiaSpeak(`YAY! You solved ${problemName}!... 
+                You're getting so good at ${goal}!... 
                 Keep it up and you'll be able to afford that date in no time... P.S if you solve this next question, you'll be EVEN closer to that date ;)`);
         }
     }, [status]);
