@@ -76,6 +76,15 @@ const LandingPage = ({
         }
     }, [currentStage]);
 
+    // Make Lia speak "Nice to meet you" in the Promise stage
+    useEffect(() => {
+        if (currentStage === Stage.Promise) {
+            makeLiaSpeak(
+                `Nice to meet you, ${username}. Let's go on a study date together! Solve more questions, earn points, and unlock exclusive experiences with me!`
+            );
+        }
+    }, [currentStage, username]);
+
     const renderContent = () => {
         switch (currentStage) {
             case Stage.Intorduction:
@@ -115,7 +124,7 @@ const LandingPage = ({
                             <p>
                                 Hi, I’m Lia, but you can call me Code-Senpai! I
                                 want to be a Software Engineer and I love
-                                problem solving, but sometimes it get's
+                                leetcoding, but sometimes it get's
                                 lonely...
                                 <br></br>You look cute! Tell me about yourself!
                             </p>
