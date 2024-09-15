@@ -7,10 +7,10 @@ import React, {
     useState,
 } from "react";
 
-import { getClaudeResponse } from "../servers/Claude";
+import { getClaudeChatResponse } from "../servers/Claude";
 
 interface ChatOverlayProps {
-    problemContext?: string;
+    problemContext?: DescriptionData;
 }
 
 interface Message {
@@ -36,7 +36,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
         setIsLoading(true);
 
         try {
-            const response: string = await getClaudeResponse(inputMessage);
+            const response: string = await getClaudeChatResponse(inputMessage);
             const botResponse: Message = { text: response, sender: "bot" };
             setMessages((prevMessages) => [...prevMessages, botResponse]);
         } catch (error) {
