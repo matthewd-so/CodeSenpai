@@ -58,7 +58,7 @@ const Shop = ({ token, id }: { token: string | null; id: string | null }) => {
             id: 4,
             title: "Karaoke Date",
             description:
-                "Hit the karaoke lounge with Lia for a night of music and laughter! ",
+                "Hit the karaoke lounge with Lia for a night of music and laughter! Let's sing Justin Bieber and Dua Lipa! ",
             imageUrl: karaoke,
             price: 700,
         },
@@ -66,7 +66,7 @@ const Shop = ({ token, id }: { token: string | null; id: string | null }) => {
             id: 5,
             title: "Beach Date",
             description:
-                "Spend a relaxing day with Lia at a beautiful, sun-drenched beach",
+                "Spend a relaxing day with Lia at a beautiful, sun-drenched beach. Choose to engage in light-hearted conversation, play beach games",
             imageUrl: beach,
             price: 1000,
         },
