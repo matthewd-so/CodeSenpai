@@ -15,6 +15,7 @@ const ProblemSet = ({
     id: string | null;
 }) => {
     const [username, setUsername] = useState<string>("");
+    const [money, setMoney] = useState<number>(0);
     const [verified, setVerified] = useState<boolean>(false);
     const navigate = useNavigate();
     const [problemListData, setProblemListData] = useState();
@@ -59,6 +60,7 @@ const ProblemSet = ({
             })
             .then(({ data }) => {
                 setUsername(data.username);
+                setMoney(data.money);
                 setVerified(true);
             })
             .catch((e: AxiosError) => {
@@ -77,7 +79,7 @@ const ProblemSet = ({
     return (
         <>
             {verified ? (
-                <MainHeading data={{ username: username }} />
+                <MainHeading data={{ username: username, money: money }} />
             ) : (
                 <MainHeading data={{ status: "none" }} />
             )}

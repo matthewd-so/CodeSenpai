@@ -81,6 +81,7 @@ interface PublicUser {
     views: number;
     solution_count: number;
     reputation_count: number;
+    money: number;
 }
 
 type Sort = "asc" | "des" | "";
@@ -114,6 +115,7 @@ interface NavbarItem {
 interface MainHeadingData {
     items?: MainHeadingItems[];
     username?: string;
+    money?: number;
     id?: string;
     status?: "loggedin" | "not-loggedin" | "none";
 }

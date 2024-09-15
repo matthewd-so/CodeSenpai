@@ -12,6 +12,7 @@ const ProfilePage = ({
     id: string | null;
 }) => {
     const [username, setUsername] = useState<string>("");
+    const [money, setMoney] = useState<number>(0);
     const [verified, setVerified] = useState<boolean>(false);
     const [user, setUser] = useState<PublicUser>();
     const [verifiedCertain, setVerifiedCertain] = useState<boolean>(false);
@@ -34,6 +35,7 @@ const ProfilePage = ({
             })
             .then(({ data }) => {
                 setUsername(data.username);
+                setMoney(data.money);
                 setVerified(true);
                 setVerifiedCertain(true);
             })
@@ -46,6 +48,7 @@ const ProfilePage = ({
             .get<{}, { data: PublicUser }>(`${API_URL}/api/accounts/${name}`)
             .then(({ data }) => {
                 setUsername(data.username);
+                setMoney(data.money);
                 setUser(data);
                 setEAll(data.easy_problems_count);
                 setMAll(data.medium_problems_count);
@@ -64,6 +67,7 @@ const ProfilePage = ({
                 <MainHeading
                     data={{
                         username: username,
+                        money: money,
                         status: "loggedin",
                         items: [
                             { text: "Problem List", link_path: "/problemset" },
@@ -109,13 +113,13 @@ const ProfilePage = ({
                             </div>
                             <div className="md:flex hidden flex-row absolute right-[90px]">
                                 <div className="w-[80px] h-[80px] mt-[40px] border border-borders ml-[20px] rounded-lg relative">
-                                    <i className="bi bi-x-lg text-borders absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"></i>
+                                    <i className="absolute -translate-x-1/2 -translate-y-1/2 bi bi-x-lg text-borders left-1/2 top-1/2"></i>
                                 </div>
                                 <div className="w-[80px] h-[80px] mt-[40px] border border-borders ml-[20px] rounded-lg relative">
-                                    <i className="bi bi-x-lg text-borders absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"></i>
+                                    <i className="absolute -translate-x-1/2 -translate-y-1/2 bi bi-x-lg text-borders left-1/2 top-1/2"></i>
                                 </div>
                                 <div className="w-[80px] h-[80px] mt-[40px] border border-borders ml-[20px] rounded-lg relative">
-                                    <i className="bi bi-x-lg text-borders absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"></i>
+                                    <i className="absolute -translate-x-1/2 -translate-y-1/2 bi bi-x-lg text-borders left-1/2 top-1/2"></i>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +144,7 @@ const ProfilePage = ({
                             </div>
                         </div>
                         <div className="lg:w-[calc(60%-4px)] sm:w-full sm:h-[240px] h-[450px] bg-black mt-[8px] rounded-lg border border-borders relative">
-                            <div className="flex sm:flex-row flex-col justify-between">
+                            <div className="flex flex-col justify-between sm:flex-row">
                                 <div>
                                     <div className="text-[22px] font-bold mt-[40px] text-white ml-[50px]">
                                         Solved Problems

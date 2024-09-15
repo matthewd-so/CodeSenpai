@@ -25,6 +25,8 @@ const LandingPage = ({
 }) => {
     const [currentStage, setCurrentStage] = useState<Stage>(Stage.Intorduction);
     const [username, setUsername] = useState<string>("");
+    const [money, setMoney] = useState<number>(0);
+    const [verified, setVerified] = useState<boolean>(false);
     const [goal, setGoal] = useState<string>("");
 
     // Access API_KEY and VOICE_ID from the environment variables
@@ -88,10 +90,10 @@ const LandingPage = ({
                             alt="Your anime wifu"
                             className="h-[400px]"
                         />
-                        <p className="text-center mt-0 mb-0 font-suse text-7xl text-black">
+                        <p className="mt-0 mb-0 text-center text-black font-suse text-7xl">
                             Code Senpai
                         </p>
-                        <p className="text-center mt-0 font-suse text-2xl w-full text-black">
+                        <p className="w-full mt-0 text-2xl text-center text-black font-suse">
                             Your AI-GF that will make you employed and feel
                             loved!
                         </p>
@@ -191,6 +193,28 @@ const LandingPage = ({
         }
     };
 
+    useEffect(() => {
+        if (!id) {
+            setVerified(false);
+            setVerifiedCertain(true);
+        }
+        axios
+            .get(`${API_URL}/api/accounts/id/${id}`, {
+                headers: {
+                    Authorization: token,
+                },
+            })
+            .then(({ data }) => {
+                setUsername(data.username);
+                setMoney(data.money);
+                setVerified(true);
+                setVerifiedCertain(true);
+            })
+            .catch((e: AxiosError) => {
+                setVerified(false);
+                setVerifiedCertain(true);
+            });
+    }, []);
     return (
         <div className="w-[100vw] h-[100vh] overflow-hidden absolute bg-white">
             <div className="">

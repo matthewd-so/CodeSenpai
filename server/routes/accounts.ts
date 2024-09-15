@@ -259,6 +259,7 @@ accounts.get("/:name", async (req, res) => {
         views: user.views,
         solution_count: user.solution_count,
         reputation_count: user.reputation_count,
+        money: user.money,
     };
 
     res.json(publicUser);

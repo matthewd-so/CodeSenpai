@@ -11,6 +11,7 @@ interface User {
     views: number;
     solution_count: number;
     reputation_count: number;
+    money: number;
 }
 
 interface PublicUser {
@@ -31,4 +32,5 @@ interface PublicUser {
     views: number;
     solution_count: number;
     reputation_count: number;
+    money: number;
 }
