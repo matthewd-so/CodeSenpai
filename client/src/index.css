@@ -16,7 +16,7 @@ html {
     --text-2-color: #808080;
     --borders-color: #333;
     --code-color: #252525;
-    --code-color-upd: #fcc7e7;
+    --code-color-upd: #f0f0f0;
     --bg-color-upd: white;
 }
 
@@ -124,7 +124,7 @@ code {
 
 .cm-activeLineGutter,
 .cm-activeLine {
-    background-color: #ebc4d0 !important;
+    background-color: #f5f5f5 !important;
 }
 .cm-foldPlaceholder {
     background-color: rgb(255, 255, 255) !important;
@@ -165,7 +165,8 @@ code {
     overflow: hidden;
     height: 42px;
     overflow-x: scroll;
-    background-color: var(--code-color-upd);
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333333; /* Dark grey text color */
     padding: 10px 16px 3px 16px;
     border-radius: 4px;
     box-sizing: border-box;

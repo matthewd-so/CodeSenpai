@@ -85,7 +85,8 @@ User Message: ${inputMessage}`;
         <button
           onClick={toggleChat}
           aria-label="Open chat"
-          className="bg-pink-500 dark:bg-pink-600 text-white p-3 rounded-full shadow-lg hover:bg-pink-600 dark:hover:bg-pink-700 transition-colors"
+          className="bg-red-300 dark:bg-pink-600 text-white p-3 rounded-full shadow-lg hover:bg-pink-400 dark:hover:bg-pink-700 transition-colors duration-300 ease-in-out"
+
         >
           <MessageCircle size={24} />
         </button>

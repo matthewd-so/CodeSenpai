@@ -90,19 +90,21 @@ const ProblemSet = ({
                     >
                         <div className="w-full bg-violet-400 border-b border-gray-500 ">
                             <div className="ml-[9px]">
-                                <CustomNavbar data={customNavData} />
+                                {/* <CustomNavbar data={customNavData} /> */}
                             </div>
                         </div>
                         <div className="w-full bg-white h-[40px] relative border-b border-gray-500">
-                            <input
-                                type="text"
-                                placeholder="Search questions..."
-                                onChange={(e) => {
-                                    handleSearch(e.target.value);
-                                    setSearchQ(e.target.value);
-                                }}
-                                className="bg-white outline-none border-none relative -translate-y-1/2 top-1/2 left-[9px] px-[20px] text-[14px] h-[calc(100%-2px)] placeholder:text-[14px] placeholder:text-text_2 w-[calc(100%-100px)]"
-                            />
+                        <input
+                            type="text"
+                            placeholder="Search questions..."
+                            onChange={(e) => {
+                                handleSearch(e.target.value);
+                                setSearchQ(e.target.value);
+                            }}
+                            className="bg-violet-100 outline-none border-2 border-violet-500 focus:border-violet-700 hover:border-violet-600 text-violet-900 placeholder-violet-400 px-4 py-2 rounded-lg w-full transition duration-300 ease-in-out"
+                        />
+
+
                         </div>
                         <div>
                             <ProblemList

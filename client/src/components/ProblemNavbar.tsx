@@ -31,7 +31,7 @@ const ProblemNavbar = ({ data }: { data: Data }) => {
 
     return (
         <div
-            className="relative bg-violet-600 w-fit flex flex-row h-[50px] rounded-t-lg text-[14px] items-center text-[#c4c0c0] overflow-hidden select-none"
+            className="relative bg-violet-500 w-fit flex flex-row h-[50px] rounded-t-lg text-[14px] items-center text-[#c4c0c0] overflow-hidden select-none"
             onMouseOver={() => setIsInMenu(true)}
             onMouseOut={() => setIsInMenu(false)}
         >
