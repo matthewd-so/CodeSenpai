@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import CodeBlock from "./CodeBlock";
 import { getClaudeEndingResponse } from "../servers/Claude";
 import happy from "../images/happi.png";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 type SubmissionsDataProps = {
     data: SubmissionsData;
@@ -27,19 +29,74 @@ const Submissions = ({ data, problemName, goal }: SubmissionsDataProps) => {
         }
     }, [data.is_submitted]);
 
+    const status = data.submissions_list[0].status;
+    useEffect(() => {
+        if (status === "Accepted") {
+            makeLiaSpeak(`Yay! You solved ${problemName}!... 
+                You're getting so good at ${goal}! 
+                Keep it up and you'll be able to afford that date in no time... P.S if you solve this next question, you'll be EVEN closer to that date ;)`);
+        }
+    }, [status]);
+
     if (!data || data.submissions_list.length === 0)
         return (
             <div className="text-[14px] text-text_2 mx-auto text-center mt-[50px]">
                 No submissions found
             </div>
         );
-    const status = data.submissions_list[0].status;
     const error = data.submissions_list[0].error;
     const runtime = data.submissions_list[0].runtime;
     const memory = data.submissions_list[0].memory;
     const input = data.submissions_list[0].input;
     const expected_output = data.submissions_list[0].expected_output;
     const user_output = data.submissions_list[0].user_output;
+
+    const API_KEY = process.env.REACT_APP_API_KEY;
+    const VOICE_ID = process.env.REACT_APP_VOICE_ID;
+    const makeLiaSpeak = async (text: string) => {
+        if (!API_KEY || !VOICE_ID) {
+            console.error(
+                "Missing API key or Voice ID in environment variables"
+            );
+            return;
+        }
+
+        try {
+            const response = await axios.post(
+                `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
+                {
+                    text: text,
+                    voice_settings: {
+                        stability: 0.25,
+                        similarity_boost: 0.9,
+                    },
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "xi-api-key": API_KEY,
+                    },
+                    responseType: "arraybuffer", // Important to handle audio response
+                }
+            );
+
+            const audioBlob = new Blob([response.data], { type: "audio/mpeg" });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
+
+            // Play the audio only after user interaction (click)
+            audio.play().catch((error) => {
+                console.error("Audio playback failed:", error);
+            });
+        } catch (error: any) {
+            console.error("Error generating speech:", error);
+            if (error.response) {
+                console.error("Response data:", new TextDecoder().decode(error.response.data));
+            }
+        }
+    };
+
+    
 
     return (
         <div>
@@ -116,9 +173,11 @@ const Submissions = ({ data, problemName, goal }: SubmissionsDataProps) => {
                                     <p className="font-suse">
                                         {" "}
                                         {liaMesssage} P.S If you do{" "}
-                                        <span className="underline underline-offset-1">
-                                            Two Sum
-                                        </span>
+                                        <Link to='/problem/two-soulmates%20💏'>
+                                            <span className="underline underline-offset-1">
+                                                Two Partners 💏
+                                            </span>
+                                        </Link>
                                         , you can afford a coffee chat with me! 😉
                                     </p>
                                 </div>
