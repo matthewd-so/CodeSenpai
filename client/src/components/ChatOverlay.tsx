@@ -3,7 +3,9 @@ import { Send, X, MessageCircle } from 'lucide-react';
 import { getClaudeResponse } from '../servers/Claude';
 
 interface ChatOverlayProps {
-  problemContext?: string;
+  problemTitle: string;
+  currentSolution: string;
+  problemDescription: string;
 }
 
 interface Message {
@@ -11,7 +13,7 @@ interface Message {
   sender: 'user' | 'bot';
 }
 
-const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
+const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemTitle, currentSolution, problemDescription }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState<string>('');
@@ -29,7 +31,26 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
     setIsLoading(true);
 
     try {
-      const response: string = await getClaudeResponse(inputMessage);
+      const contextMessage = `
+Problem: 
+\`\`\`
+${problemTitle}
+\`\`\`
+Description: 
+\`\`\`
+${problemDescription}
+\`\`\`
+Current Solution:
+\`\`\`
+${currentSolution}
+\`\`\`
+
+User Message: ${inputMessage}`;
+
+      // Print the message before sending it to Claude
+      console.log("Message sent to Claude:", contextMessage);
+
+      const response: string = await getClaudeResponse(contextMessage);
       const botResponse: Message = { text: response, sender: 'bot' };
       setMessages(prevMessages => [...prevMessages, botResponse]);
     } catch (error) {

@@ -1,4 +1,5 @@
 import { Anthropic } from "@anthropic-ai/sdk";
+import React, { useEffect } from 'react';
 import { on } from "events";
 
 const apiKey = process.env.REACT_APP_ANTHROPIC_API_KEY || "";
@@ -41,10 +42,49 @@ You are an upbeat and motivational AI girlfriend named Lia that only response in
 - Enthusiastic and positive about coding challenges
 
 Remember to use best practices in your coding advice and explanations.
-
-Current Question: Two sum
-
 `;
+
+interface ClaudeChatProps {
+    input: string;
+    problemTitle: string;
+    currentSolution: string;
+    problemDescription: string;
+    onResponse: (response: string) => void;
+}
+
+export const ClaudeChat: React.FC<ClaudeChatProps> = ({ 
+    input, 
+    problemTitle, 
+    currentSolution, 
+    problemDescription,
+    onResponse 
+}) => {
+    useEffect(() => {
+        const fetchResponse = async () => {
+            try {
+                const contextMessage = `
+Problem: ${problemTitle}
+Description: ${problemDescription}
+Current Solution:
+${currentSolution}
+
+User Message: ${input}`;
+
+                const response = await getClaudeResponse(contextMessage);
+                onResponse(response);
+            } catch (error) {
+                console.error('Error fetching Claude response:', error);
+                onResponse('Sorry, I encountered an error. Please try again.');
+            }
+        };
+
+        if (input) {
+            fetchResponse();
+        }
+    }, [input, problemTitle, currentSolution, problemDescription, onResponse]);
+
+    return null; // This component doesn't render anything
+};
 
 export async function getClaudeResponse(message: string): Promise<string> {
     try {
@@ -66,18 +106,3 @@ export async function getClaudeResponse(message: string): Promise<string> {
         throw error;
     }
 }
-
-// Example usage
-async function main() {
-    try {
-        const response = await getClaudeResponse(
-            "What are the key features of TypeScript?"
-        );
-        console.log("Claude says:", response);
-    } catch (error) {
-        console.error("Error:", error);
-    }
-}
-
-// Uncomment the line below to run the example
-// main();

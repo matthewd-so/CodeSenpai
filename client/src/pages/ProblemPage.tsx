@@ -16,7 +16,9 @@ import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
 
 // Add this interface above the ProblemPage component
 interface ChatOverlayProps {
-    problemContext?: string;
+    problemTitle: string;
+    currentSolution: string;
+    problemDescription: string;
 }
 
 const ProblemPage = ({
@@ -42,6 +44,7 @@ const ProblemPage = ({
     const navigate = useNavigate();
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
     const { name } = useParams();
+    const problemTitle = name || '';
 
     const submitCode = () => {
         setIsSubmitLoading(true);
@@ -246,7 +249,11 @@ const ProblemPage = ({
                     </div>
                 </div>
             </div>
-            <ChatOverlay />
+            <ChatOverlay 
+                problemTitle={problemTitle} 
+                currentSolution={code} 
+                problemDescription={problemDescriptionData?.description_body || ''}
+            />
 
             {/* Inline Styling for the Example Boxes */}
             <style>{`
