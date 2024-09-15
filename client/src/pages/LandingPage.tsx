@@ -73,7 +73,7 @@ const LandingPage = ({
     useEffect(() => {
         if (currentStage === Stage.Motivation) {
             makeLiaSpeak(
-                "Hi, I’m Lia! But you can call me Code-Senpai. I want to be a Software Engineer and I looove Leetcoding, but sometimes, it gets quite lonely... You look cute! Tell me about yourself!"
+                "Hi, I’m Lia! But you can call me Code-Senpai. I want to be a Software Engineer and I love Leetcoding, but sometimes, it gets quite lonely... You look cute! Tell me about yourself!"
             );
         }
     }, [currentStage]);
