@@ -12,6 +12,7 @@ import hs from "../images/headshot-removebg-preview.png";
 
 interface ChatOverlayProps {
     problemContext?: DescriptionData;
+    code: string;
 }
 
 interface Message {
@@ -19,7 +20,7 @@ interface Message {
     sender: "user" | "bot";
 }
 
-const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
+const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext, code }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputMessage, setInputMessage] = useState<string>("");
@@ -37,7 +38,11 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
         setIsLoading(true);
 
         try {
-            const response: string = await getClaudeChatResponse(inputMessage);
+            const response: string = await getClaudeChatResponse({
+                userQuery: inputMessage,
+                problemName: problemContext?.name || "",
+                userCode: code || "",    
+            }, );
             const botResponse: Message = { text: response, sender: "bot" };
             setMessages((prevMessages) => [...prevMessages, botResponse]);
         } catch (error) {
@@ -72,9 +77,9 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
                 <button
                     onClick={toggleChat}
                     aria-label="Open chat"
-                    className="bg-pink-100  text-black p-3 rounded-full shadow-lg border-4 border-pink-300 transition-colors duration-300 ease-in-out"
+                    className="p-3 text-black transition-colors duration-300 ease-in-out bg-pink-100 border-4 border-pink-300 rounded-full shadow-lg"
                 >
-                    <img className="rounded-t-lg h-20" src={hs} />
+                    <img className="h-20 rounded-t-lg" src={hs} />
                 </button>
             )}
             {isOpen && (
@@ -89,7 +94,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
                             <X size={24} />
                         </button>
                     </div>
-                    <div className="flex-grow overflow-y-auto p-4 bg-pink-50 ">
+                    <div className="flex-grow p-4 overflow-y-auto bg-pink-50 ">
                         {messages.map((msg, index) => (
                             <div
                                 key={index}
@@ -121,7 +126,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
                                 onKeyPress={handleKeyPress}
                                 placeholder="Type a message..."
                                 aria-label="Chat message"
-                                className="flex-grow text-black p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-pink-300 border-pink-300 dark:border-pink-300 bg-white "
+                                className="flex-grow p-2 text-black bg-white border border-pink-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-pink-300 dark:border-pink-300 "
                                 disabled={isLoading}
                             />
                             <button

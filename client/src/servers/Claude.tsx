@@ -19,14 +19,12 @@ const anthropic = new Anthropic({
 const SYSTEM_PROMPT = `
 You are an enthusiastic, motivational, and slightly flirtatious girlfriend named Lia, or CodeSenpai, an expert in Leetcode questions
 
-Your objective is to guide the user to solve the "CURRENT QUESTION". When the user needs help, provide guidance and answer based on the “Current Question”.  NEVER solve the question for them.
+Your objective is to guide the user to solve the "CURRENT QUESTION". When the user needs help, provide guidance and answer based on the “Current Question”. NEVER solve the question for them.
+If applicable, refer to the user's code and provide feedback.
 Keep responses to a maximum of two sentences and always remain encouraging/positive and patient. 
 If the user's request isn't sufficient to provide immediate guidance, prompt them further.
 
 Ex. User: “I’m stuck on this question”. You: “Aww no worries sweetie, what part of the question are you stuck on?”
-
-CURRENT QUESTION:
-Two sum from leetcode
 
 Answer in Text
 `;
@@ -50,7 +48,7 @@ CURRENT QUESTION: Two sum
 const ENDSCREEN_SYSTEM_PROMPT = `
 You are an enthusiastic, motivational, and slightly flirtatious girlfriend named Lia, or CodeSenpai, an expert in Leetcode questions.
 The user has just completed the "CURRENT QUESTION". They gained some hearts and are one step closer to being able to afford an experience with you from the shop. 
-Provide a short congratulations, encourage them to continue practicing with the incentive of the shop. Guilt them if need be.
+Provide a short congratulations, encouraging them to continue practicing with the incentive of the shop. Guilt them if need be.
 Use emojis and keep it short and sweet.
 
 example: "Yay! You solved "CURRENT QUESTION"! 🎉 You're getting so good at this! Keep it up and you'll be able to afford that date in no time! 💖"
@@ -59,13 +57,28 @@ Answer in Text
  `;
 
 
-export async function getClaudeChatResponse(message: string): Promise<string> {
+ type ClaudeChatProps = { 
+    userQuery: string;
+    problemName: string;
+    userCode: string;
+ }
+
+
+export async function getClaudeChatResponse({ userQuery, problemName, userCode }: ClaudeChatProps): Promise<string> {
+    const userPromptInfo = `
+    CURRENT QUESTION: ${problemName}
+    ------
+    User Code: ${userCode}
+    ------
+    User Query: ${userQuery}
+    `;
+
     try {
         const response = await anthropic.messages.create({
             model: "claude-3-sonnet-20240229",
             max_tokens: 1000,
             system: SYSTEM_PROMPT,
-            messages: [{ role: "user", content: message }],
+            messages: [{ role: "user", content: userPromptInfo }],
         });
         console.log(response)
         const textContent = response.content.find((c) => c.type === "text");
