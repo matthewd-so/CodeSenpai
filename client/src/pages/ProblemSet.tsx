@@ -102,7 +102,7 @@ const ProblemSet = ({
                                     handleSearch(e.target.value);
                                     setSearchQ(e.target.value);
                                 }}
-                                className="bg-violet-100 outline-none border-2 border-violet-500 focus:border-violet-700 hover:border-violet-600 text-violet-900 placeholder-violet-400 px-4 py-2 rounded-lg w-full transition duration-300 ease-in-out"
+                                className="w-full px-4 py-2 transition duration-300 ease-in-out border-2 rounded-lg outline-none bg-violet-100 border-violet-500 focus:border-violet-700 hover:border-violet-600 text-violet-900 placeholder-violet-400"
                             />
                         </div>
                         <div className="mt-2">
@@ -112,11 +112,10 @@ const ProblemSet = ({
                                 data={problemListData as any}
                             />
                         </div>
-                        <div className="flex row w-full mt-4 gap-16 ml-40 mt-28">
-                            <div className="bg-[#B3A1CF]/50  h-32 border-4 text-2xl border-[#E3A6D1] mt-16 py-6 mb-0 font-suse text-violet-900 justify-center  px-6">
+                        <div className="flex gap-16 mx-20 delay-150 row mt-28 animate-slideInRight ">
+                            <div className="bg-[#B3A1CF]/50 border-4 text-2xl border-[#E3A6D1] mt-16 py-6 mb-0 font-suse text-violet-900 justify-center  px-6">
                                 <p className="text-semibold">
-                                    Let's try to do the Valid Partners,{" "}
-                                    {username}.<br></br> I believe in you! And
+                                    I see you want to learn about <span className="italic">Sets</span> {username}. <br></br> Let's try to do the Valid Partners problem together! I believe in you! And
                                     if you have any questions or feel stuck,
                                     just let me know!
                                 </p>

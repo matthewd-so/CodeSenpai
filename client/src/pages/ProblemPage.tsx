@@ -14,10 +14,6 @@ import Submissions from "../components/Submissions";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
 
-// Add this interface above the ProblemPage component
-interface ChatOverlayProps {
-    problemContext?: string;
-}
 
 const ProblemPage = ({
     data,
@@ -29,7 +25,7 @@ const ProblemPage = ({
     id: string | null;
 }) => {
     const [username, setUsername] = useState<string>("");
-    const [money, setMoney] = useState<string>("");
+    const [money, setMoney] = useState<number>(0);
     const [initCode, setInitCode] = useState<string>("");
     const [code, setCode] = useState<string>("");
     const [currentLang, setCurrentLang] = useState<string>("javascript");
@@ -41,6 +37,7 @@ const ProblemPage = ({
     const [submissionData, setSubmissionData] = useState<Submission[]>();
     const navigate = useNavigate();
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+    const [errorData, setErrorData] = useState<string>("");
     const { name } = useParams();
 
     const submitCode = () => {
@@ -65,6 +62,7 @@ const ProblemPage = ({
             .then(({ data }) => {
                 setIsSubmitted(true);
                 setSubmissionData(data);
+                setErrorData(data[0].error || "");
                 navigate(`/problem/${name}/submissions`);
                 setIsSubmitLoading(false);
             })
@@ -144,6 +142,7 @@ const ProblemPage = ({
                 data={{
                     items: [{ text: "Problem List", link_path: "/problemset" }],
                     username: username,
+                    money: money,
                 }}
             />
             <div className="h-[calc(100vh-60px)] overflow-hidden bg-white">
@@ -248,7 +247,7 @@ const ProblemPage = ({
                     </div>
                 </div>
             </div>
-            <ChatOverlay problemContext={problemDescriptionData} code={code}/>
+            <ChatOverlay problemContext={problemDescriptionData} code={code} error={errorData}/>
 
             {/* Inline Styling for the Example Boxes */}
             <style>{`

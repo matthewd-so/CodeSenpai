@@ -9,10 +9,12 @@ import React, {
 
 import { getClaudeChatResponse } from "../servers/Claude";
 import hs from "../images/headshot-removebg-preview.png";
+import { error } from "console";
 
 interface ChatOverlayProps {
     problemContext?: DescriptionData;
     code: string;
+    error?: string;
 }
 
 interface Message {
@@ -20,7 +22,7 @@ interface Message {
     sender: "user" | "bot";
 }
 
-const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext, code }) => {
+const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext, code, error }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputMessage, setInputMessage] = useState<string>("");
@@ -41,7 +43,8 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext, code }) => {
             const response: string = await getClaudeChatResponse({
                 userQuery: inputMessage,
                 problemName: problemContext?.name || "",
-                userCode: code || "",    
+                userCode: code || "", 
+                userError: error || "",  
             }, );
             const botResponse: Message = { text: response, sender: "bot" };
             setMessages((prevMessages) => [...prevMessages, botResponse]);

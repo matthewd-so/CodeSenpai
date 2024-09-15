@@ -14,7 +14,7 @@ const Submissions = ({ data, problemName, goal }: SubmissionsDataProps) => {
     const liaMesssage =
         "Yay! You solved " +
         problemName +
-        "! 🎉 You're getting so good at" +
+        "! 🎉 You're getting so good at " +
         goal +
         "! Keep it up and you'll be able to afford that date in no time! 💖";
 

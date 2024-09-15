@@ -13,7 +13,29 @@ module.exports = {
                 code: "var(--code-color)",
                 // primary: "var(--primary-color)",
             },
+            keyframes: {
+                slideInRight: {
+                  '0%': { transform: 'translateX(100%)' },
+                  '100%': { transform: 'translateX(0)' },
+                },
+            },
+            animation: {
+                slideInRight: 'slideInRight 0.5s ease-out',
+            },
+            animationDelay: {
+                '2s': '2s',
+            },
         },
     },
-    plugins: [],
+    variants: {},
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.delay-2s': {
+          'animation-delay': '2s',
+        },
+      };
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+  ],
 };

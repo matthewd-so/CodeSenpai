@@ -58,7 +58,7 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
                                 <ShoppingCartIcon />
                             </div>
                         </Link>
-                        <div
+                        {/* <div
                             id="profile-picture"
                             className="inline-block relative p-[5px] text-[14px] text-[#808080] "
                             onClick={() => setSidePanelState(!sidePanelState)}
@@ -66,14 +66,17 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
                             <Tooltip text={data?.username || ""}>
                                 <div className="w-[32px] bg-violet-200 h-[32px] m-0 border border-borders rounded-[99px]"></div>
                             </Tooltip>
+                        </div> */}
+                        <div className="font-medium">
+                            {data?.username || ''}
                         </div>
-                        <SidePanel
+                        {/* <SidePanel
                             displayFn={setSidePanelState}
                             display={sidePanelState}
                             data={{
                                 username: data?.username || "",
                             }}
-                        />
+                        /> */}
                     </div>
                 ) : data?.status === "not-loggedin" ? (
                     <div className="fixed flex flex-row right-[36px] items-center h-[60px]">

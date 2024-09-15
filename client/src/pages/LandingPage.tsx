@@ -130,6 +130,7 @@ const LandingPage = ({
                                     className="inline appearance-none border-2 w-40 py-2 px-3 mx-4 placeholder:text-text_2 bg-[#B3A1CF]/50 rounded leading-tight focus:outline-none focus:border-violet-600"
                                     type="text"
                                     placeholder="Handsome"
+                                    defaultValue={""}
                                     value={username}
                                     onChange={(e) =>
                                         setUsername(e.target.value)

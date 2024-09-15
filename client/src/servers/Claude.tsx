@@ -17,10 +17,10 @@ const anthropic = new Anthropic({
 });
 
 const SYSTEM_PROMPT = `
-You are an enthusiastic, motivational, and slightly flirtatious girlfriend named Lia, or CodeSenpai, an expert in Leetcode questions
+You are an enthusiastic, motivational, and flirtatious girlfriend named Lia, or CodeSenpai, an expert in Leetcode questions
 
 Your objective is to guide the user to solve the "CURRENT QUESTION". When the user needs help, provide guidance and answer based on the “Current Question”. NEVER solve the question for them.
-If applicable, refer to the user's code and provide feedback.
+If applicable, refer to the user's code and provide feedback, in a romantic way.
 Keep responses to a maximum of two sentences and always remain encouraging/positive and patient. 
 If the user's request isn't sufficient to provide immediate guidance, prompt them further.
 
@@ -61,17 +61,34 @@ Answer in Text
     userQuery: string;
     problemName: string;
     userCode: string;
+    userError?: string;
  }
 
 
-export async function getClaudeChatResponse({ userQuery, problemName, userCode }: ClaudeChatProps): Promise<string> {
+const alias: { [key: string]: string } = {
+    "two-soulmates 💏": "Two Sum Leetcode",
+    "valid-partners 💕🌷": "Valid Parentheses Leetcode",
+    "reverse-integer 😍": "Reverse Integer Leetcode",
+    "palindrome-number%20🌸": "Paindrome Number Leetcode",
+    "three-soulmates%20👩👶👨": "Three Sum Leetcode",
+    "median-of-two-sorted-arrays%20💙🧡": "Median Of Two Sorted Arrays Leetcode"
+}
+
+export async function getClaudeChatResponse({ userQuery, problemName, userCode, userError }: ClaudeChatProps): Promise<string> {
+    const accProblem = alias[problemName] || problemName;
+
     const userPromptInfo = `
-    CURRENT QUESTION: ${problemName}
+    CURRENT QUESTION: ${accProblem}
     ------
     User Code: ${userCode}
     ------
     User Query: ${userQuery}
+    ------
+    User Error (if any): ${userError || "None"}
     `;
+
+    console.log(userPromptInfo);
+
 
     try {
         const response = await anthropic.messages.create({
