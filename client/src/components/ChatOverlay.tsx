@@ -32,10 +32,18 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemTitle, currentSolution
 
     try {
       const contextMessage = `
-Problem: ${problemTitle}
-Description: ${problemDescription}
+Problem: 
+\`\`\`
+${problemTitle}
+\`\`\`
+Description: 
+\`\`\`
+${problemDescription}
+\`\`\`
 Current Solution:
+\`\`\`
 ${currentSolution}
+\`\`\`
 
 User Message: ${inputMessage}`;
 
