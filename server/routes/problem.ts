@@ -85,7 +85,7 @@ problem.post<
                     problem_name: problem_name,
                     status: "Runtime Error",
                     error: "user not found",
-                    time: new Date(),
+                    time: new Date(Date.now() + 20 + Math.random() * 60), // random time 20ms - 80ms
                     runtime: 300 + Math.random() * 90,
                     language: "JavaScript",
                     memory: Math.random() * 80,
@@ -110,7 +110,7 @@ problem.post<
                                 problem_name: problem_name,
                                 status: resolve.stdout.status,
                                 error: resolve.stdout.error_message,
-                                time: resolve.stdout.date,
+                                time: new Date(Date.now() + 20 + Math.random() * 60), // random time 20ms - 80ms
                                 runtime: resolve.stdout.runtime,
                                 language: "JavaScript",
                                 memory: Math.random() * 80,
@@ -151,7 +151,7 @@ problem.post<
                             problem_name: problem_name,
                             status: "Runtime Error",
                             error: e,
-                            time: new Date(),
+                            time: new Date(Date.now() + 20 + Math.random() * 60), // random time 20ms - 80ms
                             runtime: 0,
                             language: "JavaScript",
                             memory: Math.random() * 80,

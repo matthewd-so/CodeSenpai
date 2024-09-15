@@ -53,7 +53,7 @@ The user has just completed the "CURRENT QUESTION". They gained some hearts and 
 Provide a short congratulations, encourage them to continue practicing with the incentive of the shop. Guilt them if need be.
 Use emojis and keep it short and sweet.
 
-example: "Yay! You solved "CURRENT QUESTION"! 🎉 You're getting so good at this! Keep it up and you'll be able to afford that new experience in no time! 💖"
+example: "Yay! You solved "CURRENT QUESTION"! 🎉 You're getting so good at this! Keep it up and you'll be able to afford that date in no time! 💖"
 
 Answer in Text
  `;

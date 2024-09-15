@@ -1,6 +1,18 @@
+import { useEffect, useState } from "react";
 import CodeBlock from "./CodeBlock";
 
 const Submissions = ({ data }: { data: SubmissionsData }) => {
+    const [liaMessage, setLiaMessage] = useState<string>("");
+    
+    useEffect  (() => {
+        if (data.is_submitted) {
+            const element = document.getElementById("submission-error-block");
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [data.is_submitted]);
+    
     if (!data || data.submissions_list.length === 0)
         return (
             <div className="text-[14px] text-text_2 mx-auto text-center mt-[50px]">
@@ -14,6 +26,7 @@ const Submissions = ({ data }: { data: SubmissionsData }) => {
     const input = data.submissions_list[0].input;
     const expected_output = data.submissions_list[0].expected_output;
     const user_output = data.submissions_list[0].user_output;
+
 
     return (
         <div>
