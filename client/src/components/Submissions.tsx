@@ -119,7 +119,7 @@ const Submissions = ({ data, problemName, goal }: SubmissionsDataProps) => {
                                         <span className="underline underline-offset-1">
                                             Two Sum
                                         </span>
-                                        , you can afford a coffee chat with me!
+                                        , you can afford a coffee chat with me! 😉
                                     </p>
                                 </div>
                                 <img
