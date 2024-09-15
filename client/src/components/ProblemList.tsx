@@ -101,7 +101,7 @@ const ProblemList = ({
                     </div>
                     <div
                         id="title-label"
-                        className="h-fit flex-grow px-[20px] hover:text-white hover:cursor-pointer transition"
+                        className="h-fit flex-grow px-[20px] hover:cursor-pointer transition"
                         ref={titleRef}
                         style={{
                             color:
@@ -118,7 +118,7 @@ const ProblemList = ({
                     </div>
                     <div
                         id="accaptance-label"
-                        className="h-fit w-fit px-[20px] hover:text-white hover:cursor-pointer transition"
+                        className="h-fit w-fit px-[20px]  hover:cursor-pointer transition"
                         ref={acceptanceRef}
                         style={{
                             color:
@@ -136,7 +136,7 @@ const ProblemList = ({
                     </div>
                     <div
                         id="difficulty-label"
-                        className="h-fit w-fit px-[20px] hover:cursor-pointer hover:text-white transition"
+                        className="h-fit w-fit px-[20px] hover:cursor-pointer  transition"
                         ref={difficultyRef}
                         style={{
                             color:
@@ -332,7 +332,7 @@ const ProblemList = ({
                                     >
                                         <div className="ml-[20px] relative h-full">
                                             {main.is_starred ? (
-                                                <div className="absolute top-1/2 -translate-y-1/2 left-0">
+                                                <div className="absolute left-0 -translate-y-1/2 top-1/2">
                                                     <StarIcon
                                                         data={{
                                                             is_filled: true,
@@ -342,7 +342,7 @@ const ProblemList = ({
                                                     />
                                                 </div>
                                             ) : (
-                                                <div className="absolute top-1/2 -translate-y-1/2 left-0">
+                                                <div className="absolute left-0 -translate-y-1/2 top-1/2">
                                                     <StarIcon
                                                         data={{
                                                             is_filled: false,
