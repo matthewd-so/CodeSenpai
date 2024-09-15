@@ -153,7 +153,7 @@ const LandingPage = ({
                             onClick={() => {
                                 setCurrentStage(Stage.Promise);
                                 makeLiaSpeak(
-                                    `Nice to meet you, ${username}. Let's go on a study date together! Solve more questions, earn points, and unlock exclusive experiences with me!`
+                                    `Nice to meet you, ${username}. Let's go on a study date together! You can solve questions and earn points, to unlock exclusive experiences with me!`
                                 );
                             }}
                         >
@@ -172,9 +172,8 @@ const LandingPage = ({
                         <div className="bg-[#B3A1CF]/50 w-9/12 border-4 text-2xl border-[#E3A6D1] py-6 mb-0 font-suse text-violet-900 text-bold px-6">
                             <p>
                                 Nice to meet you, {username}. Let's go on a
-                                study date together! Solve more questions, earn
-                                points, and unlock exclusive experiences with
-                                me!
+                                study date together! Let's go on a study date together! 
+                                You can solve questions and earn points, to unlock exclusive experiences with me
                             </p>
                         </div>
                         <button className="bg-[#B3A1CF]/50 font-suse font-semibold text-violet-700 py-[10px] px-[40px] rounded-[30px] border-4 border-[#E3A6D1]">
