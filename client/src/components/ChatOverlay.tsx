@@ -71,7 +71,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
                 <button
                     onClick={toggleChat}
                     aria-label="Open chat"
-                    className="p-3 text-white transition-colors duration-300 ease-in-out bg-red-300 rounded-full shadow-lg dark:bg-pink-600 hover:bg-pink-400 dark:hover:bg-pink-700"
+                    className="bg-red-300 dark:bg-pink-600 text-black p-3 rounded-full shadow-lg hover:bg-pink-400 dark:hover:bg-pink-700 transition-colors duration-300 ease-in-out"
                 >
                     <MessageCircle size={24} />
                 </button>
@@ -88,21 +88,21 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
                             <X size={24} />
                         </button>
                     </div>
-                    <div className="flex-grow p-4 overflow-y-auto bg-pink-50">
+                    <div className="flex-grow overflow-y-auto p-4 bg-pink-50 ">
                         {messages.map((msg, index) => (
                             <div
                                 key={index}
-                                className={`mb-2 ${
+                                className={`mb-2  ${
                                     msg.sender === "user"
                                         ? "text-right"
                                         : "text-left"
                                 }`}
                             >
                                 <span
-                                    className={`inline-block p-2 rounded-lg ${
+                                    className={`inline-block p-2 rounded-lg text-black ${
                                         msg.sender === "user"
-                                            ? "bg-pink-400 dark:bg-pink-600 text-white"
-                                            : "bg-white text-pink-800 dark:text-pink-200 border border-pink-300 dark:border-pink-500"
+                                            ? "bg-pink-400 dark:bg-pink-400 text-white"
+                                            : "bg-white text-black  border border-pink-300 dark:border-pink-500"
                                     }`}
                                 >
                                     {msg.text}
@@ -120,7 +120,7 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
                                 onKeyPress={handleKeyPress}
                                 placeholder="Type a message..."
                                 aria-label="Chat message"
-                                className="flex-grow p-2 text-black bg-white border border-pink-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-pink-300 dark:border-pink-300 dark:text-white"
+                                className="flex-grow text-black p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-pink-300 border-pink-300 dark:border-pink-300 bg-white "
                                 disabled={isLoading}
                             />
                             <button
