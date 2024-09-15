@@ -89,7 +89,7 @@ const ProblemSet = ({
                         id="explanation"
                         className="h-[calc(100%-16px)] bg-white border-gray-500 border-borders ml-[8px] rounded-lg w-[calc(100%-16px)] overflow-hidden"
                     >
-                        <div className="w-full bg-violet-400 border-b border-gray-500 ">
+                        <div className="w-full border-b border-gray-500 bg-violet-400 ">
                             <div className="ml-[9px]">
                                 {/* <CustomNavbar data={customNavData} /> */}
                             </div>
@@ -105,7 +105,7 @@ const ProblemSet = ({
                                 className="bg-violet-100 outline-none border-2 border-violet-500 focus:border-violet-700 hover:border-violet-600 text-violet-900 placeholder-violet-400 px-4 py-2 rounded-lg w-full transition duration-300 ease-in-out"
                             />
                         </div>
-                        <div>
+                        <div className="mt-2">
                             <ProblemList
                                 searchFn={handleSearch}
                                 searchQuery={searchQ}

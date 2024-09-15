@@ -134,6 +134,7 @@ problem.post<
                                 user.problems_solved.push(problem_name);
                                 user.problems_solved_count += 1;
                             }
+                            user.money += problem.main.difficulty === "easy" ? 10 : problem.main.difficulty === "medium" ? 30 : 50;
                         } else {
                             if (
                                 !user.problems_attempted.includes(problem_name)

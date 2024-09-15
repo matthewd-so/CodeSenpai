@@ -111,7 +111,7 @@ const Submissions = ({ data, problemName, goal }: SubmissionsDataProps) => {
                                     {"MB"}
                                 </span>
                             </div>
-                            <div className="row flex place-content-evenly">
+                            <div className="flex row place-content-evenly">
                                 <div className="bg-[#B3A1CF]/50 w-full border-4  text-lg border-[#E3A6D1] py-4 px-6">
                                     <p className="font-suse">
                                         {" "}
@@ -123,7 +123,7 @@ const Submissions = ({ data, problemName, goal }: SubmissionsDataProps) => {
                                     </p>
                                 </div>
                                 <img
-                                    className="rounded-t-lg h-40 object-cover"
+                                    className="object-cover h-40 rounded-t-lg"
                                     src={happy}
                                 />
                             </div>

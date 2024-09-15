@@ -153,7 +153,7 @@ const ProblemPage = ({
                 >
                     <div
                         id="explanation"
-                        className="h-[calc(100%-16px)] bg-white border-gray-300 ml-[8px] rounded-lg w-[50%] overflow-hidden border border-violet-200"
+                        className="h-[calc(100%-16px)] bg-white ml-[8px] rounded-lg w-[50%] overflow-hidden border border-violet-200"
                     >
                         <div className="relative w-full bg-violet-200 h-[50px] rounded-t-lg overflow-hidden border-borders box-content">
                             {name != undefined && (
@@ -198,7 +198,7 @@ const ProblemPage = ({
                     <div className="ml-4 flex flex-col h-[calc(100%-16px)] w-[calc(50%-8px)] mr-[8px] flex-grow">
                         <div className="min-h-0 flex-grow min-w-full mr-[8px] mb-[8px] rounded-lg overflow-hidden bg-white border border-violet-200">
                             <div className="h-[50px] bg-violet-500 relative border-b border-borders">
-                                <div className="text-white inline-block relative w-fit h-fit rounded-md ml-[13px] top-[8px] px-[6px] py-[6px] text-white hover:text-white cursor-pointer text-[14px] transition select-none">
+                                <div className="text-white inline-block relative w-fit h-fit rounded-md ml-[13px] top-[8px] px-[6px] py-[6px] hover:text-white cursor-pointer text-[14px] transition select-none">
                                     {currentLang}
                                 </div>
                             </div>
