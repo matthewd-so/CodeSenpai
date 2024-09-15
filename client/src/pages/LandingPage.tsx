@@ -90,7 +90,7 @@ const LandingPage = ({
                             Code Senpai
                         </p>
                         <p className="w-full mt-0 text-2xl text-center text-black font-suse">
-                            Your AI-GF that will make you employed and feel
+                            Your AI-GF that will get you a job and make you feel loved.
                             loved!
                         </p>
                         <button
