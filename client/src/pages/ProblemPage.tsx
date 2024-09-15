@@ -187,6 +187,8 @@ const ProblemPage = ({
                                             submissions_list: submissionData,
                                             is_submitted: isSubmitted,
                                         }}
+                                        problemName={name || ""}
+                                        goal={"stacks"}
                                     />
                                 )}
                         </div>
@@ -246,7 +248,7 @@ const ProblemPage = ({
                     </div>
                 </div>
             </div>
-            <ChatOverlay problemContext={problemDescriptionData}/>
+            <ChatOverlay problemContext={problemDescriptionData} />
 
             {/* Inline Styling for the Example Boxes */}
             <style>{`
