@@ -18,9 +18,9 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
                         className="inline-block text-[24px] font-bold italic mx-[36px] mt-[12px]"
                     >
                         <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 px-[1px]">
-                            Fire
+                            Code
                         </span>
-                        <span>Code</span>
+                        <span>Senpai</span>
                     </div>
                 </Link>
                 {data != undefined &&
