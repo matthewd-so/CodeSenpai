@@ -82,7 +82,7 @@ const Shop = ({ token, id }: { token: string | null; id: string | null }) => {
     ]);
 
     const Card = ({ title, description, imageUrl, price }: CardData) => (
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4">
+        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4 transition-shadow duration-300 cursor-pointer hover:shadow-xl hover:shadow-gray-400">
             <img
                 className="rounded-t-lg w-full  object-cover"
                 src={imageUrl}
