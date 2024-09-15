@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import Notification from "./Notification";
+import { ShoppingCartIcon } from "lucide-react";
 import SidePanel from "./SidePanel";
 import { TiHeart } from "react-icons/ti";
 import Tooltip from "./Tooltip";
 import { useState } from "react";
-import { ShoppingCartIcon } from "lucide-react";
 
 const MainHeading = ({ data }: { data?: MainHeadingData }) => {
     const [sidePanelState, setSidePanelState] = useState<boolean>(false);
