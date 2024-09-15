@@ -62,7 +62,7 @@ const LandingPage = ({
                             className="h-[350px]"
                         />
                         <div
-                            className="bg-[#B3A1CF]/50 border-4 text-2xl  border-[#E3A6D1] py-6 mb-0 font-suse text-violet-900 text-bold 
+                            className="bg-[#B3A1CF]/50 w-9/12 border-4 text-2xl  border-[#E3A6D1] py-6 mb-0 font-suse text-violet-900 text-bold 
                         px-6 "
                         >
                             <p>
@@ -73,7 +73,7 @@ const LandingPage = ({
                             </p>
                         </div>
                         <div className="w-9/12 ml-[20%]">
-                            <p className="text-violet-900 font-suse font-semibold text-lg">
+                            <p className="text-violet-900 w-9/12 font-suse font-semibold text-lg">
                                 {" "}
                                 My name is
                                 <input
