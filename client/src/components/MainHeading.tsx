@@ -4,6 +4,7 @@ import SidePanel from "./SidePanel";
 import { TiHeart } from "react-icons/ti";
 import Tooltip from "./Tooltip";
 import { useState } from "react";
+import { ShoppingCartIcon } from "lucide-react";
 
 const MainHeading = ({ data }: { data?: MainHeadingData }) => {
     const [sidePanelState, setSidePanelState] = useState<boolean>(false);
@@ -42,14 +43,21 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
                                 <i className="absolute -translate-x-1/2 -translate-y-1/2 bi bi-three-dots-vertical top-1/2 left-1/2 group-hover:text-white"></i>
                             </div>
                         </div>
-
                         <div
                             id="money"
-                            className=" p-[5px] text-[14px] text-[#808080] mr-6 flex items-center"
+                            className=" p-[5px] font-extrabold text-[14px] text-[#808080] mr-6 flex items-center"
                         >
                             {data?.money || 0}
-                            <TiHeart className="inline-block ml-2 text-3xl text-pink-400" />
+                            <TiHeart className="inline-block ml-1 text-3xl text-pink-400" />
                         </div>
+                        <Link to='/shop'>
+                            <div
+                                id='shop'
+                                className=" p-[5px] text-[14px] text-[#808080] mr-6 flex items-center"
+                            >
+                                <ShoppingCartIcon />
+                            </div>
+                        </Link>
                         <div
                             id="profile-picture"
                             className="inline-block relative p-[5px] text-[14px] text-[#808080] "
