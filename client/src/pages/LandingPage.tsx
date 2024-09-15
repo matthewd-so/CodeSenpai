@@ -1,10 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 import { API_URL } from "../App";
+import { Link } from "react-router-dom";
 import MainHeading from "../components/MainHeading";
+import axios from "axios";
 import girlImg from "../images/girlalone.png";
 import girlSmiling from "../images/grl-smiling.png";
+import grlHeart from "../images/heartgrl.png";
+import { render } from "react-dom";
 
 enum Stage {
     Intorduction,
@@ -31,7 +34,9 @@ const LandingPage = ({
     // Function to make Lia speak
     const makeLiaSpeak = async (text: string) => {
         if (!API_KEY || !VOICE_ID) {
-            console.error("Missing API key or Voice ID in environment variables");
+            console.error(
+                "Missing API key or Voice ID in environment variables"
+            );
             return;
         }
 
@@ -113,7 +118,8 @@ const LandingPage = ({
                             <p>
                                 Hi, I’m Lia, but you can call me Code-Senpai! I
                                 want to be a Software Engineer and I love
-                                problem solving, but sometimes it get's lonely...
+                                problem solving, but sometimes it get's
+                                lonely...
                                 <br></br>You look cute! Tell me about yourself!
                             </p>
                         </div>
@@ -154,25 +160,33 @@ const LandingPage = ({
                 );
             case Stage.Promise:
                 return (
-                    <div className="text-center">
-                        <h2 className="text-4xl font-bold mb-4">
-                            Ready to Code?
-                        </h2>
-                        <p className="text-xl mb-4">
-                            Let's dive into some coding challenges!
-                        </p>
-                        <div className="space-y-4">
-                            <button className="bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black w-full">
-                                Easy Challenge
-                            </button>
-                            <button className="bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black w-full">
-                                Medium Challenge
-                            </button>
-                            <button className="bg-[#B3A1CF] font-suse text-purple py-[10px] px-[40px] rounded-[30px] border border-black w-full">
-                                Hard Challenge
-                            </button>
+                    <>
+                        <img
+                            src={grlHeart}
+                            alt="Your anime wifu showing hearts"
+                            className="h-[350px]"
+                        />
+                        <div
+                            className="bg-[#B3A1CF]/50 w-9/12 border-4 text-2xl  border-[#E3A6D1] py-6 mb-0 font-suse text-violet-900 text-bold 
+                        px-6 "
+                        >
+                            <p>
+                                Nice to meet you, {username}. Lets go on a study
+                                date together! Solve more questions, earn
+                                points, and unlock exclusive experiences with
+                                me!
+                            </p>
                         </div>
-                    </div>
+
+                        <button
+                            className="bg-[#B3A1CF]/50 font-suse font-semibold text-violet-700 text-purple py-[10px] px-[40px] rounded-[30px] border-4 border-[#E3A6D1]"
+                            onClick={() => setCurrentStage(Stage.Promise)}
+                        >
+                            <Link to="/problemset" className="">
+                                Let's go!~
+                            </Link>
+                        </button>
+                    </>
                 );
         }
     };
