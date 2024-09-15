@@ -86,7 +86,7 @@ problem.post<
                     status: "Runtime Error",
                     error: "user not found",
                     time: new Date(),
-                    runtime: 0,
+                    runtime: 300 + Math.random() * 90,
                     language: "JavaScript",
                     memory: Math.random() * 80,
                     code_body: undefined,

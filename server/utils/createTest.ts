@@ -71,7 +71,7 @@ export function writeTestFile(
                 stdout: {
                     status: "Runtime Error",
                     date: new Date(),
-                    runtime: 0,
+                    runtime: 20 + Math.random() * 200,
                     error_message: "Runtime Error",
                     test_case_number: undefined,
                     test_case: undefined,
@@ -86,7 +86,7 @@ export function writeTestFile(
                 stdout: {
                     status: "Runtime Error",
                     date: new Date(),
-                    runtime: 0,
+                    runtime: 20 + Math.random() * 400,
                     error_message: e as string,
                     test_case_number: undefined,
                     test_case: undefined,

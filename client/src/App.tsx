@@ -6,10 +6,13 @@ import LandingPage from "./pages/LandingPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import ErrorPage from "./pages/ErrorPage";
+import ProfilePage from "./pages/ProfilePage";
+import SettingPage from "./pages/SettingPage";
 
 export const TOKEN_STORAGE_KEY = "authToken";
 export const ID_STORAGE_KEY = "id";
 export const API_URL = "https://fire-code-api.vercel.app";
+// export const API_URL = "http://localhost:80";
 
 function App() {
     const [token, setToken] = useState(localStorage.getItem(TOKEN_STORAGE_KEY));
@@ -125,14 +128,14 @@ function App() {
                             />
                         }
                     />
-                    {/* <Route
+                    <Route
                         path="/settings"
                         element={<SettingPage token={token} id={id} />}
                     />
                     <Route
                         path="/accounts/:name"
                         element={<ProfilePage token={token} id={id} />}
-                    /> */}
+                    />
 
                     <Route
                         path="*"
