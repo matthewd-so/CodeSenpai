@@ -117,7 +117,7 @@ const Submissions = ({ data, problemName, goal }: SubmissionsDataProps) => {
                                         {" "}
                                         {liaMesssage} P.S If you do{" "}
                                         <span className="underline underline-offset-1">
-                                            Valid Partners
+                                            Two Sum
                                         </span>
                                         , you can afford a coffee chat with me!
                                     </p>
