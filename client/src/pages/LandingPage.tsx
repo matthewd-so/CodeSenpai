@@ -40,39 +40,39 @@ const LandingPage = ({
             return;
         }
 
-        // try {
-        //     const response = await axios.post(
-        //         `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
-        //         {
-        //             text: text,
-        //             voice_settings: {
-        //                 stability: 0.25,
-        //                 similarity_boost: 0.9,
-        //             },
-        //         },
-        //         {
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //                 "xi-api-key": API_KEY,
-        //             },
-        //             responseType: "arraybuffer", // Important to handle audio response
-        //         }
-        //     );
+        try {
+            const response = await axios.post(
+                `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
+                {
+                    text: text,
+                    voice_settings: {
+                        stability: 0.25,
+                        similarity_boost: 0.9,
+                    },
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "xi-api-key": API_KEY,
+                    },
+                    responseType: "arraybuffer", // Important to handle audio response
+                }
+            );
 
-        //     const audioBlob = new Blob([response.data], { type: "audio/mpeg" });
-        //     const audioUrl = URL.createObjectURL(audioBlob);
-        //     const audio = new Audio(audioUrl);
+            const audioBlob = new Blob([response.data], { type: "audio/mpeg" });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
 
-        //     // Play the audio only after user interaction (click)
-        //     audio.play().catch((error) => {
-        //         console.error("Audio playback failed:", error);
-        //     });
-        // } catch (error: any) {
-        //     console.error("Error generating speech:", error);
-        //     if (error.response) {
-        //         console.error("Response data:", new TextDecoder().decode(error.response.data));
-        //     }
-        // }
+            // Play the audio only after user interaction (click)
+            audio.play().catch((error) => {
+                console.error("Audio playback failed:", error);
+            });
+        } catch (error: any) {
+            console.error("Error generating speech:", error);
+            if (error.response) {
+                console.error("Response data:", new TextDecoder().decode(error.response.data));
+            }
+        }
     };
 
     // Render content based on the current stage
@@ -116,7 +116,7 @@ const LandingPage = ({
                         />
                         <div className="bg-[#B3A1CF]/50 w-9/12 border-4 text-2xl border-[#E3A6D1] py-6 mb-0 font-suse text-violet-900 text-bold px-6">
                             <p>
-                                Hi, I’m Code-Senpai, but you can call me Lia! I
+                                Hi, I’m Code Senpai, but you can call me Lia! I
                                 want to be a Software Engineer and I love
                                 Leetcoding, but sometimes it gets quite lonely.{" "}
                                 <br /> Hey, you look cute! Tell me about
@@ -131,7 +131,7 @@ const LandingPage = ({
                                     type="text"
                                     placeholder="Handsome"
                                     defaultValue={""}
-                                    value={username}
+                                    // value={username}
                                     onChange={(e) =>
                                         setUsername(e.target.value)
                                     }
