@@ -19,6 +19,7 @@
         "@types/node": "^20.4.4"
     },
     "dependencies": {
+        "@anthropic-ai/sdk": "^0.27.3",
         "@types/mongoose": "^5.11.97",
         "acorn": "^8.10.0",
         "bad-words": "^3.0.4",
