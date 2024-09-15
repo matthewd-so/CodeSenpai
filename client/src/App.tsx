@@ -138,14 +138,14 @@ function App() {
                             />
                         }
                     />
-                    <Route
+                    {/* <Route
                         path="/settings"
                         element={<SettingPage token={token} id={id} />}
                     />
                     <Route
                         path="/accounts/:name"
                         element={<ProfilePage token={token} id={id} />}
-                    />
+                    /> */}
 
                     <Route
                         path="*"
