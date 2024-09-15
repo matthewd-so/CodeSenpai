@@ -1,11 +1,12 @@
-import { useState } from "react";
-import CustomNavbar from "../components/CustomNavbar";
-import ProblemList from "../components/ProblemList";
-import MainHeading from "../components/MainHeading";
-import { useEffect } from "react";
 import axios, { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
+
 import { API_URL } from "../App";
+import CustomNavbar from "../components/CustomNavbar";
+import MainHeading from "../components/MainHeading";
+import ProblemList from "../components/ProblemList";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const ProblemSet = ({
     token,
@@ -20,13 +21,7 @@ const ProblemSet = ({
     const navigate = useNavigate();
     const [problemListData, setProblemListData] = useState();
     const customNavData: Navbar = {
-        items: [
-            { text: "All Topics", link_path: "/problemset" },
-            { text: "Algorithms", link_path: "/problemset" },
-            { text: "JavaScript", link_path: "/problemset" },
-            { text: "DataBase", link_path: "/problemset" },
-            { text: "Shell", link_path: "/problemset" },
-        ],
+        items: [{ text: "All Topics", link_path: "/problemset" }],
     };
 
     const [searchQ, setSearchQ] = useState<string>("");
@@ -84,21 +79,21 @@ const ProblemSet = ({
                 <MainHeading data={{ status: "none" }} />
             )}
 
-            <div className="h-[calc(100vh-60px)] overflow-hidden bg-black">
+            <div className="h-[calc(100vh-60px)] overflow-hidden bg-white text-black">
                 <div
                     id="cont"
                     className="relative flex flex-row h-[calc(100vh-60px)] w-full mt-[8px] "
                 >
                     <div
                         id="explanation"
-                        className="h-[calc(100%-16px)] bg-black border border-borders ml-[8px] rounded-lg w-[calc(100%-16px)] overflow-hidden"
+                        className="h-[calc(100%-16px)] bg-white border-gray-500 border-borders ml-[8px] rounded-lg w-[calc(100%-16px)] overflow-hidden"
                     >
-                        <div className="w-full bg-black border-b border-borders ">
+                        <div className="w-full bg-violet-400 border-b border-gray-500 ">
                             <div className="ml-[9px]">
                                 <CustomNavbar data={customNavData} />
                             </div>
                         </div>
-                        <div className="w-full bg-black h-[40px] relative border-b border-borders">
+                        <div className="w-full bg-white h-[40px] relative border-b border-gray-500">
                             <input
                                 type="text"
                                 placeholder="Search questions..."
@@ -106,7 +101,7 @@ const ProblemSet = ({
                                     handleSearch(e.target.value);
                                     setSearchQ(e.target.value);
                                 }}
-                                className="bg-black outline-none border-none relative -translate-y-1/2 top-1/2 left-[9px] px-[20px] text-[14px] h-[calc(100%-2px)] placeholder:text-[14px] placeholder:text-text_2 w-[calc(100%-100px)]"
+                                className="bg-white outline-none border-none relative -translate-y-1/2 top-1/2 left-[9px] px-[20px] text-[14px] h-[calc(100%-2px)] placeholder:text-[14px] placeholder:text-text_2 w-[calc(100%-100px)]"
                             />
                         </div>
                         <div>

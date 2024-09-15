@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export interface Navbar {
     text: string;
@@ -31,7 +31,7 @@ const ProblemNavbar = ({ data }: { data: Data }) => {
 
     return (
         <div
-            className="relative bg-black w-fit flex flex-row h-[50px] rounded-t-lg text-[14px] items-center text-[#808080] overflow-hidden select-none"
+            className="relative bg-violet-600 w-fit flex flex-row h-[50px] rounded-t-lg text-[14px] items-center text-[#c4c0c0] overflow-hidden select-none"
             onMouseOver={() => setIsInMenu(true)}
             onMouseOut={() => setIsInMenu(false)}
         >
@@ -59,7 +59,7 @@ const ProblemNavbar = ({ data }: { data: Data }) => {
             <Link to={`/problem/${data.problem_name}`}>
                 <div
                     id="description"
-                    className={`ml-[9px] z-40 px-[20px] py-[14px] cursor-pointer hover:text-white transition relative ${
+                    className={`ml-[9px] z-40 px-[20px] py-[14px] cursor-pointer hover:bg-violet-800 hover:rouned-lg hover:text-white transition relative ${
                         (activeItem || data.nav_option_name) === "description"
                             ? "text-white "
                             : ""
@@ -72,7 +72,7 @@ const ProblemNavbar = ({ data }: { data: Data }) => {
             <Link to={`/problem/${data.problem_name}/submissions`}>
                 <div
                     id="submissions"
-                    className={`z-40 px-[20px] py-[14px] cursor-pointer hover:text-white transition relative p-[14px] ${
+                    className={`z-40 px-[20px] py-[14px]  hover:bg-violet-800 cursor-pointer hover:text-white transition relative p-[14px] ${
                         (activeItem || data.nav_option_name) === "submissions"
                             ? "text-white "
                             : ""

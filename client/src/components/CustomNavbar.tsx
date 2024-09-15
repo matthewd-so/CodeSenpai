@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import { changeCase } from "../ts/utils/string";
 
 const CustomNavbar = ({ data }: { data: Navbar }) => {
-    const default_color_all: string = "#808080";
+    const default_color_all: string = "#2e004d";
     const default_color_hover_all: string = "#fff";
-    const default_bg_color_hover_all: string = "#333";
-    const default_bg_color_all: string = "#000";
+    const default_bg_color_hover_all: string = "#2e004d";
+    const default_bg_color_all: string = "#E3A6D1";
     const default_active_color_all: string = "#fff";
     const default_font_size_all: string = "14px";
     const default_transition_duration_all: string = "150ms";
@@ -96,7 +97,7 @@ const CustomNavbar = ({ data }: { data: Navbar }) => {
                 ></div>
                 <div
                     id="active-underline"
-                    className="absolute h-[2px] bottom-0"
+                    className="absolute h-[2px] bottom-0 "
                     style={{
                         width: activeItemWidth,
                         transition: `all ${

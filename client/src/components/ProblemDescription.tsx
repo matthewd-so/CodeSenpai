@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { convertMarkdownToHtml } from "../ts/utils/utils";
 import { changeCase, kebabToSpacedPascal } from "../ts/utils/string";
+
 import StarIcon from "./StarIcon";
+import { convertMarkdownToHtml } from "../ts/utils/utils";
 
 const ProblemDescription = ({ data }: { data: DescriptionData }) => {
     const [isStarred, setIsStarred] = useState<boolean>(
@@ -14,9 +15,11 @@ const ProblemDescription = ({ data }: { data: DescriptionData }) => {
         <>
             {Object.keys(data).length !== 0 && (
                 <div>
-                    <h1 className="font-bold mt-[36px] ml-[26px] text-[22px]">
-                        <span id="problem-id">{data.id}</span>.{" "}
-                        {kebabToSpacedPascal(data.name)}
+                    <h1 className="font-bold mt-[36px] ml-[26px] text-[22px] text-black ">
+                        <span className="text-black" id="problem-id">
+                            {data.id}
+                        </span>
+                        . {kebabToSpacedPascal(data.name)}
                     </h1>
                     <div className="flex flex-row ml-[26px] mt-[20px] select-none">
                         <div

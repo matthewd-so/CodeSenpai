@@ -1,8 +1,9 @@
-import axios, { AxiosError } from "axios";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios, { AxiosError } from "axios";
+
 import { API_URL } from "../App";
 import Loading from "../components/Loading";
+import { useState } from "react";
 
 const SignupPage = ({
     Data,
@@ -65,9 +66,9 @@ const SignupPage = ({
                     className="inline-block relative text-[24px] left-1/2 -translate-x-1/2 font-bold italic mx-auto mt-[12px]"
                 >
                     <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 px-[1px]">
-                        Fire
+                        Code
                     </span>
-                    <span>Code</span>
+                    <span>Senpai</span>
                 </div>
             </Link>
             <div className="min-h-fit w-[300px] mx-auto text-[14px]">
