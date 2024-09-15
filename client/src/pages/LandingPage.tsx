@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 
 import { API_URL } from "../App";
 import { Link } from "react-router-dom";
-import MainHeading from "../components/MainHeading";
 import axios from "axios";
 import girlImg from "../images/girlalone.png";
 import girlSmiling from "../images/grl-smiling.png";
 import grlHeart from "../images/heartgrl.png";
-import { render } from "react-dom";
 
 enum Stage {
     Intorduction,
@@ -25,8 +23,6 @@ const LandingPage = ({
 }) => {
     const [currentStage, setCurrentStage] = useState<Stage>(Stage.Intorduction);
     const [username, setUsername] = useState<string>("");
-    const [money, setMoney] = useState<number>(0);
-    const [verified, setVerified] = useState<boolean>(false);
     const [goal, setGoal] = useState<string>("");
 
     // Access API_KEY and VOICE_ID from the environment variables
@@ -75,7 +71,7 @@ const LandingPage = ({
     useEffect(() => {
         if (currentStage === Stage.Motivation) {
             makeLiaSpeak(
-                "Hi, I’m Lia! But you can call me Code-Senpai. I want to be a Software Engineer and I love Leetcoding, but sometimes, it gets quite lonely... You look cute! Tell me about yourself!"
+                "Hi, I’m Lia! But you can call me Code-Senpai... I want to be a Software Engineer and I love Leetcoding... but sometimes. it gets quite lonely... You look cute! Tell me about yourself!"
             );
         }
     }, [currentStage]);
@@ -126,7 +122,7 @@ const LandingPage = ({
                             </p>
                         </div>
                         <div className="w-9/12 ml-[20%]">
-                            <p className="text-violet-900 w-9/12 font-suse font-semibold text-lg">
+                            <p className="w-9/12 text-lg font-semibold text-violet-900 font-suse">
                                 {" "}
                                 My name is
                                 <input
@@ -194,10 +190,6 @@ const LandingPage = ({
     };
 
     useEffect(() => {
-        if (!id) {
-            setVerified(false);
-            setVerifiedCertain(true);
-        }
         axios
             .get(`${API_URL}/api/accounts/id/${id}`, {
                 headers: {
@@ -206,14 +198,7 @@ const LandingPage = ({
             })
             .then(({ data }) => {
                 setUsername(data.username);
-                setMoney(data.money);
-                setVerified(true);
-                setVerifiedCertain(true);
             })
-            .catch((e: AxiosError) => {
-                setVerified(false);
-                setVerifiedCertain(true);
-            });
     }, []);
     return (
         <div className="w-[100vw] h-[100vh] overflow-hidden absolute bg-white">
@@ -227,7 +212,7 @@ const LandingPage = ({
                 <div className="absolute circle-7-animation top-[10%] left-[50%] -translate-x-1/2 w-[400px] h-[400px] rounded-full filter blur-[99px] bg-gradient-to-br from-transparent to-orange-800 opacity-60 z-10"></div>
             </div>
 
-            <div className="absolute flex flex-col items-center justify-center space-y-6 z-50 inset-0 mx-auto">
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center mx-auto space-y-6">
                 {renderContent()}
             </div>
         </div>
