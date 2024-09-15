@@ -1,4 +1,5 @@
 # CodeSenp.AI - Your Virtual Girlfriend and LeetCode Assistant
+<img width="953" alt="Screenshot 2024-09-15 at 4 00 03 AM" src="https://github.com/user-attachments/assets/5165d957-4587-4158-9e6b-f5cc47e1876a">
 
 **CodeSenp.AI** is your personal virtual girlfriend and coding assistant designed to help you practice coding while making it fun and interactive. CodeSenp.ai motivates you, helps you with LeetCode problems, and tracks your progress while making the experience enjoyable with a personalized virtual companion!
 
