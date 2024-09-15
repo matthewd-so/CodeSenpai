@@ -50,7 +50,7 @@ function App() {
                         path="/problemset"
                         element={<ProblemSet token={token} id={id} />}
                     />
-                    <Route
+                    {/* <Route
                         path="/problem/:name/editorial"
                         element={
                             <ProblemPage
@@ -59,7 +59,7 @@ function App() {
                                 id={id}
                             />
                         }
-                    />
+                    /> */}
                     <Route
                         path="/problem/:name/solutions"
                         element={

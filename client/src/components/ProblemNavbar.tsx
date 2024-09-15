@@ -69,32 +69,6 @@ const ProblemNavbar = ({ data }: { data: Data }) => {
                     Description
                 </div>
             </Link>
-            <Link to={`/problem/${data.problem_name}/editorial`}>
-                <div
-                    id="editorial"
-                    className={`z-40 px-[20px] py-[14px] cursor-pointer hover:text-white transition relative p-[14px] ${
-                        (activeItem || data.nav_option_name) === "editorial"
-                            ? "text-white "
-                            : ""
-                    }`}
-                    onMouseOver={handleMenuItemsHover}
-                >
-                    Editorial
-                </div>
-            </Link>
-            <Link to={`/problem/${data.problem_name}/solutions`}>
-                <div
-                    id="solutions"
-                    className={`z-40 px-[20px] py-[14px] cursor-pointer hover:text-white transition relative p-[14px] ${
-                        (activeItem || data.nav_option_name) === "solutions"
-                            ? "text-white "
-                            : ""
-                    }`}
-                    onMouseOver={handleMenuItemsHover}
-                >
-                    Solutions
-                </div>
-            </Link>
             <Link to={`/problem/${data.problem_name}/submissions`}>
                 <div
                     id="submissions"

@@ -13,6 +13,7 @@ interface DUser extends Document {
     views: number;
     solution_count: number;
     reputation_count: number;
+    money: number;
 }
 
 const userSchema = new mongoose.Schema<DUser>({
@@ -46,6 +47,10 @@ const userSchema = new mongoose.Schema<DUser>({
         default: 0,
     },
     reputation_count: {
+        type: Number,
+        default: 0,
+    },
+    money: {
         type: Number,
         default: 0,
     },

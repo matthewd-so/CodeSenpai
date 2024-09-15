@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useRef } from "react";
+import React, { SetStateAction, useEffect,  } from "react";
 import { useState } from "react";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
@@ -23,17 +23,10 @@ const ProblemPage = ({
     id: string | null;
 }) => {
     const [username, setUsername] = useState<string>("");
+    const [money, setMoney] = useState<string>("");
     const [initCode, setInitCode] = useState<string>("");
     const [code, setCode] = useState<string>("");
-    const explanationRef = useRef<HTMLDivElement>(null);
-    const sliderRef = useRef<HTMLDivElement>(null);
     const [currentLang, setCurrentLang] = useState<string>("javascript");
-    const handleSlider = (event: React.MouseEvent<HTMLDivElement>) => {
-        const mouseX = event.clientX;
-        const newWidth = mouseX - 8;
-        if (explanationRef.current)
-            explanationRef.current.style.width = newWidth + "px";
-    };
 
     const [isSubmitLoading, setIsSubmitLoading] = useState<boolean>(false);
 
@@ -113,6 +106,7 @@ const ProblemPage = ({
             })
             .then(({ data }) => {
                 setUsername(data.username);
+                setMoney(data.money);
             })
             .catch((e: AxiosError) => {
                 console.log(e);
@@ -142,13 +136,13 @@ const ProblemPage = ({
 
         axios
             .get(`${API_URL}/api/problem/${name}/${activeNavOption}`)
-            .then(({ data }) => {
-                if (activeNavOption === "editorial") {
-                    if ("editorial_body" in data) {
-                        setEditorial(data.editorial_body);
-                    }
-                }
-            })
+            // .then(({ data }) => {
+            //     if (activeNavOption === "editorial") {
+            //         if ("editorial_body" in data) {
+            //             setEditorial(data.editorial_body);
+            //         }
+            //     }
+            // })
             .catch((e) => console.error(e));
     }, [activeNavOption]);
 
@@ -158,6 +152,7 @@ const ProblemPage = ({
                 data={{
                     items: [{ text: "Problem List", link_path: "/problemset" }],
                     username: username,
+
                 }}
             />
             <div className="h-[calc(100vh-60px)] overflow-hidden bg-black">
@@ -168,7 +163,6 @@ const ProblemPage = ({
                     <div
                         id="explanation"
                         className="h-[calc(100%-16px)] bg-black border border-borders ml-[8px] rounded-lg w-[50%] overflow-hidden"
-                        ref={explanationRef}
                     >
                         <div className="relative w-full bg-black h-[50px] rounded-t-lg overflow-hidden border-b border-borders box-content">
                             {name != undefined && (
@@ -193,14 +187,6 @@ const ProblemPage = ({
                             ) : (
                                 <></>
                             )}
-                            {activeNavOption === "editorial" &&
-                            editorial != "" ? (
-                                <Editorial data={editorial} />
-                            ) : activeNavOption === "editorial" ? (
-                                <Loading For="pEditorial" />
-                            ) : (
-                                <></>
-                            )}
                             {activeNavOption === "submissions" &&
                                 submissionData != undefined && (
                                     <Submissions
@@ -212,14 +198,7 @@ const ProblemPage = ({
                                 )}
                         </div>
                     </div>
-                    <div
-                        id="slider"
-                        className="w-[8px] h-[calc(100%-16px)] rounded-lg hover:bg-blue-800 hover:cursor-col-resize transition active:bg-blue-800 active:cursor-col-resize"
-                        onDrag={handleSlider}
-                        ref={sliderRef}
-                        draggable="true"
-                    ></div>
-                    <div className="flex flex-col h-[calc(100%-16px)] min-w-[calc(20%-8px)] mr-[8px] flex-grow">
+                    <div className="ml-4 flex flex-col h-[calc(100%-16px)] w-[calc(50%-8px)] mr-[8px] flex-grow">
                         <div className="min-h-0 flex-grow min-w-full mr-[8px] mb-[8px] rounded-lg overflow-hidden bg-black border border-borders">
                             <div className="h-[50px] bg-black relative border-b border-borders">
                                 <div className=" inline-block relative w-fit h-fit rounded-md ml-[13px] top-[8px] px-[6px] py-[6px] text-text_2 hover:text-white cursor-pointer text-[14px] transition select-none">
@@ -243,7 +222,7 @@ const ProblemPage = ({
                         </div>
                         <div
                             id="console"
-                            className="flex justify-end items-center bg-black w-full h-[50px] rounded-lg overflow-hidden border border-borders"
+                            className="flex justify-start px-2 items-center bg-black w-full h-[50px] rounded-lg overflow-hidden border border-borders"
                         >
                             <div
                                 className="w-fit h-fit rounded mr-[11px] px-[20px] py-[4px] hover:bg-green-500 cursor-pointer hover:text-black text-black bg-green-500 text-[14px] active:border-green-800 active:bg-green-800 border-green-500 font-bold right-0 transition select-none"

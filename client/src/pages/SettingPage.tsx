@@ -86,7 +86,7 @@ const SettingPage = ({
             )}
             <div className="px-[8px]">
                 <div className="bg-black border border-borders rounded-lg mx-auto justify-center mt-[8px] max-w-[1000px] h-fit px-6 py-2">
-                    <h1 className="setting-title text-red-600">
+                    <h1 className="text-red-600 setting-title">
                         Delete Account
                     </h1>
                     <p className="setting-p">
