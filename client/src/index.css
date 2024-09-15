@@ -30,7 +30,7 @@ html {
 
 ::selection {
     background-color: #d7a8b7 !important;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 body {
@@ -119,6 +119,7 @@ code {
 .cm-lineNumbers,
 .cm-foldGutter {
     background-color: rgb(255, 255, 255);
+    color: black;
 }
 
 .cm-activeLineGutter,
