@@ -56,7 +56,7 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
                             onClick={() => setSidePanelState(!sidePanelState)}
                         >
                             <Tooltip text={data?.username || ""}>
-                                <div className="w-[32px] h-[32px] border border-borders rounded-[99px]"></div>
+                                <div className="w-[32px] bg-violet-200 h-[32px] m-0 border border-borders rounded-[99px]"></div>
                             </Tooltip>
                         </div>
                         <SidePanel
