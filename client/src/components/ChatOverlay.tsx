@@ -8,6 +8,7 @@ import React, {
 } from "react";
 
 import { getClaudeChatResponse } from "../servers/Claude";
+import hs from "../images/headshot-removebg-preview.png";
 
 interface ChatOverlayProps {
     problemContext?: DescriptionData;
@@ -71,9 +72,9 @@ const ChatOverlay: React.FC<ChatOverlayProps> = ({ problemContext }) => {
                 <button
                     onClick={toggleChat}
                     aria-label="Open chat"
-                    className="bg-red-300 dark:bg-pink-600 text-black p-3 rounded-full shadow-lg hover:bg-pink-400 dark:hover:bg-pink-700 transition-colors duration-300 ease-in-out"
+                    className="bg-pink-100  text-black p-3 rounded-full shadow-lg border-4 border-pink-300 transition-colors duration-300 ease-in-out"
                 >
-                    <MessageCircle size={24} />
+                    <img className="rounded-t-lg h-20" src={hs} />
                 </button>
             )}
             {isOpen && (
