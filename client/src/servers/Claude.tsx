@@ -1,6 +1,6 @@
 import { Anthropic } from '@anthropic-ai/sdk';
 
-const apiKey = process.env.ANTHROPIC_API_KEY || '';
+const apiKey = process.env.REACT_APP_ANTHROPIC_API_KEY || '';
 
 if (!apiKey) {
   console.error('Anthropic API key is not set. Please check your environment configuration.');
