@@ -39,6 +39,9 @@ ${currentSolution}
 
 User Message: ${inputMessage}`;
 
+      // Print the message before sending it to Claude
+      console.log("Message sent to Claude:", contextMessage);
+
       const response: string = await getClaudeResponse(contextMessage);
       const botResponse: Message = { text: response, sender: 'bot' };
       setMessages(prevMessages => [...prevMessages, botResponse]);
