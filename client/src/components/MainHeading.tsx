@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import Tooltip from "./Tooltip";
-import SidePanel from "./SidePanel";
 import Notification from "./Notification";
+import SidePanel from "./SidePanel";
 import { TiHeart } from "react-icons/ti";
+import Tooltip from "./Tooltip";
+import { useState } from "react";
 
 const MainHeading = ({ data }: { data?: MainHeadingData }) => {
     const [sidePanelState, setSidePanelState] = useState<boolean>(false);
@@ -11,16 +11,16 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
 
     return (
         <>
-            <div className="fixed w-full h-[60px] bg-black border-b border-borders flex felx-row z-[100]">
+            <div className="fixed w-full h-[60px] bg-white border-b border-borders flex felx-row z-[100]">
                 <Link to="/" className="select-none ">
                     <div
                         id="logo-cont"
                         className="inline-block text-[24px] font-bold italic mx-[36px] mt-[12px]"
                     >
-                        <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 px-[1px]">
+                        <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-red-300 px-[1px]">
                             Code
                         </span>
-                        <span>Senpai</span>
+                        <span className="text-[#5b5166]">Senpai</span>
                     </div>
                 </Link>
                 {data != undefined &&
@@ -48,7 +48,7 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
                             className=" p-[5px] text-[14px] text-[#808080] mr-6 flex items-center"
                         >
                             {data?.money || 0}
-                            <TiHeart className="inline-block ml-2 text-xl text-pink-400" />
+                            <TiHeart className="inline-block ml-2 text-3xl text-pink-400" />
                         </div>
                         <div
                             id="profile-picture"
