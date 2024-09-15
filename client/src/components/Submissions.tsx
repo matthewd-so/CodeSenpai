@@ -57,7 +57,7 @@ const Submissions = ({ data }: { data: SubmissionsData }) => {
                                 Error Message:
                             </div>
                             <div className="ml-[26px] submission-error-block">
-                                <code className="text-[14px] text-white">
+                                <code className="text-[14px] text-black">
                                     {JSON.stringify(error)}
                                 </code>
                             </div>
@@ -131,7 +131,7 @@ const Submissions = ({ data }: { data: SubmissionsData }) => {
             {data.submissions_list != undefined &&
                 data.submissions_list.length !== 0 &&
                 data.submissions_list.map((elem) => (
-                    <div className="flex flex-row mb-[8px] text-[14px] px-[16px] py-[10px] ml-[26px] w-[calc(100%-52px)] bg-[#252525] rounded-[4px] overflow-hidden whitespace-nowrap">
+                    <div className="flex flex-row mb-[8px] text-[14px] px-[16px] py-[10px] ml-[26px] w-[calc(100%-52px)] bg-[#d3d3d3] rounded-[4px] overflow-hidden whitespace-nowrap">
                         <div
                             className={`font-bold w-[180px] ${
                                 elem.status === "Accepted"

@@ -31,7 +31,7 @@ const MainHeading = ({ data }: { data?: MainHeadingData }) => {
                     data.items.map((elem) => (
                         <Link
                             to={elem.link_path}
-                            className="mt-[15px] hidden md:inline-block text-[14px] h-fit p-[5px] text-[#808080] hover:text-white transition"
+                            className="mt-[15px] hidden md:inline-block text-[14px] h-fit p-[5px] text-[#808080] hover:text-[#4B0082] transition"
                         >
                             <div id={elem.text}>{elem.text}</div>
                         </Link>

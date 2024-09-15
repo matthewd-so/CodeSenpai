@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect } from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -13,7 +13,6 @@ import ReactCodeMirror from "@uiw/react-codemirror";
 import Submissions from "../components/Submissions";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
-import { useState } from "react";
 
 // Add this interface above the ProblemPage component
 interface ChatOverlayProps {
@@ -36,19 +35,12 @@ const ProblemPage = ({
     const [currentLang, setCurrentLang] = useState<string>("javascript");
 
     const [isSubmitLoading, setIsSubmitLoading] = useState<boolean>(false);
-
-    const [editorial, setEditorial] = useState<string>("");
-
     const activeNavOption = data?.activeNavOption || "description";
-
     const [problemDescriptionData, setProblemDescriptionData] =
         useState<DescriptionData>();
-
     const [submissionData, setSubmissionData] = useState<Submission[]>();
     const navigate = useNavigate();
-
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-
     const { name } = useParams();
 
     const submitCode = () => {
@@ -161,9 +153,9 @@ const ProblemPage = ({
                 >
                     <div
                         id="explanation"
-                        className="h-[calc(100%-16px)] bg-violet-300  border-gray-500 ml-[8px] rounded-lg w-[50%] overflow-hidden"
+                        className="h-[calc(100%-16px)] bg-white border-gray-300 ml-[8px] rounded-lg w-[50%] overflow-hidden border border-violet-200"
                     >
-                        <div className="relative w-full bg-violet-300 h-[50px] rounded-t-lg overflow-hidden  border-borders box-content">
+                        <div className="relative w-full bg-violet-200 h-[50px] rounded-t-lg overflow-hidden border-borders box-content">
                             {name != undefined && (
                                 <ProblemNavbar
                                     data={{
@@ -173,7 +165,9 @@ const ProblemPage = ({
                                 />
                             )}
                         </div>
-                        <div className="description-body relative w-full h-[calc(100%-50px)] overflow-y-auto bg-violet-300 text-black">
+
+                        {/* Problem Description */}
+                        <div className="description-body relative w-full h-[calc(100%-50px)] overflow-y-auto bg-white text-black">
                             {problemDescriptionData != undefined &&
                             activeNavOption === "description" ? (
                                 <>
@@ -197,13 +191,17 @@ const ProblemPage = ({
                                 )}
                         </div>
                     </div>
+
+                    {/* Code Editor */}
                     <div className="ml-4 flex flex-col h-[calc(100%-16px)] w-[calc(50%-8px)] mr-[8px] flex-grow">
-                        <div className="min-h-0 flex-grow min-w-full mr-[8px] mb-[8px] rounded-lg overflow-hidden bg-black border border-borders">
-                            <div className="h-[50px] bg-violet-800 relative border-b border-borders">
-                                <div className="text-white inline-block relative w-fit h-fit rounded-md ml-[13px] top-[8px] px-[6px] py-[6px] text-text_2 hover:text-white cursor-pointer text-[14px] transition select-none">
+                        <div className="min-h-0 flex-grow min-w-full mr-[8px] mb-[8px] rounded-lg overflow-hidden bg-white border border-violet-200">
+                            <div className="h-[50px] bg-violet-500 relative border-b border-borders">
+                                <div className="text-white inline-block relative w-fit h-fit rounded-md ml-[13px] top-[8px] px-[6px] py-[6px] text-white hover:text-white cursor-pointer text-[14px] transition select-none">
                                     {currentLang}
                                 </div>
                             </div>
+
+                            {/* Custom CodeMirror */}
                             <ReactCodeMirror
                                 value={
                                     code === "" || code == null
@@ -211,20 +209,27 @@ const ProblemPage = ({
                                         : code || ""
                                 }
                                 extensions={[loadLanguage("javascript")!]}
-                                theme={tokyoNight}
+                                theme={"light"}
                                 onChange={(value) => {
                                     setCode(value);
                                 }}
-                                width="100%"
                                 height="100%"
+                                style={{
+                                    backgroundColor: "#ffffff",
+                                    color: "#4c4c4c", // Editor Text Color
+                                    caretColor: "#ff007f", // Blinking pink cursor
+                                }}
+                                className="rounded-b-lg"
                             />
                         </div>
+
+                        {/* Submit Console */}
                         <div
                             id="console"
-                            className="flex justify-start px-2 items-center bg-violet-800 w-full h-[50px] rounded-lg overflow-hidden border border-borders"
+                            className="flex justify-start px-2 items-center bg-violet-500 w-full h-[50px] rounded-lg overflow-hidden border border-borders"
                         >
                             <div
-                                className="w-fit h-fit rounded mr-[11px] px-[20px] py-[4px] hover:bg-red-400 cursor-pointer hover:text-black text-black bg-red-200 text-[14px] active:border-green-800 active:bg-green-800 border-green-500 font-bold right-0 transition select-none"
+                                className="w-fit h-fit rounded mr-[11px] px-[20px] py-[4px] hover:bg-violet-600 cursor-pointer hover:text-white text-white bg-violet-400 text-[14px] active:border-green-800 active:bg-green-800 border-green-500 font-bold right-0 transition select-none"
                                 onClick={submitCode}
                             >
                                 {isSubmitLoading ? (
@@ -242,6 +247,37 @@ const ProblemPage = ({
                 </div>
             </div>
             <ChatOverlay />
+
+            {/* Inline Styling for the Example Boxes */}
+            <style>{`
+                .example-box {
+                    background-color: #f0f0f0; /* Light grey */
+                    border-radius: 4px;
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    color: #333;
+                }
+                .example-box code {
+                    background-color: #d9d9d9; /* Darker grey for inline code */
+                    color: #333;
+                }
+
+                /* Problem list hover effect */
+                .problem-list-item:hover {
+                    background-color: #d3c4e9; /* A darker purple */
+                    transition: background-color 0.3s ease;
+                }
+
+                /* Cursor Blinking Effect */
+                .cm-cursor {
+                    border-left: 2px solid #ff007f; /* Bright pink cursor */
+                    animation: blink 1.2s steps(1) infinite;
+                }
+
+                @keyframes blink {
+                    50% { opacity: 0; }
+                }
+            `}</style>
         </>
     );
 };
