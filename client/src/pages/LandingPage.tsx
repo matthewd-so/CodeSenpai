@@ -1,10 +1,12 @@
-import { API_URL } from "../App";
 import { useEffect, useState } from "react";
+
+import { API_URL } from "../App";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import girlImg from "../images/girlalone.png";
 import girlSmiling from "../images/grl-smiling.png";
 import grlHeart from "../images/heartgrl.png";
+import star from "../images/star.png";
 
 // Fix typo in enum
 enum Stage {
@@ -32,7 +34,9 @@ const LandingPage = ({
     // Function to make Lia speak
     const makeLiaSpeak = async (text: string) => {
         if (!API_KEY || !VOICE_ID) {
-            console.error("Missing API key or Voice ID in environment variables");
+            console.error(
+                "Missing API key or Voice ID in environment variables"
+            );
             return;
         }
 
@@ -77,10 +81,17 @@ const LandingPage = ({
             case Stage.Introduction:
                 return (
                     <>
-                        <img src={girlImg} alt="Your anime wifu" className="h-[400px]" />
-                        <p className="mt-0 mb-0 text-center text-black font-suse text-7xl">Code Senpai</p>
+                        <img
+                            src={girlImg}
+                            alt="Your anime wifu"
+                            className="h-[400px]"
+                        />
+                        <p className="mt-0 mb-0 text-center text-black font-suse text-7xl">
+                            Code Senpai
+                        </p>
                         <p className="w-full mt-0 text-2xl text-center text-black font-suse">
-                            Your personal GF that will get you a job and make you feel loved!
+                            Your personal GF that will get you a job and make
+                            you feel loved!
                         </p>
                         <button
                             className="bg-[#B3A1CF] font-suse text-black py-[10px] px-[40px] font-semibold rounded-[30px] border border-black"
@@ -98,11 +109,17 @@ const LandingPage = ({
             case Stage.Motivation:
                 return (
                     <>
-                        <img src={girlSmiling} alt="Your anime wifu smiling" className="h-[350px]" />
+                        <img
+                            src={girlSmiling}
+                            alt="Your anime wifu smiling"
+                            className="h-[350px]"
+                        />
                         <div className="bg-[#B3A1CF]/50 w-9/12 border-4 text-2xl border-[#E3A6D1] py-6 mb-0 font-suse text-violet-900 text-bold px-6">
                             <p>
-                                Hi, I’m Code-Senpai, but you can call me Lia! I want to be a Software Engineer and I
-                                love Leetcoding, but sometimes it gets quite lonely. <br /> Hey, you look cute! Tell me about
+                                Hi, I’m Code-Senpai, but you can call me Lia! I
+                                want to be a Software Engineer and I love
+                                Leetcoding, but sometimes it gets quite lonely.{" "}
+                                <br /> Hey, you look cute! Tell me about
                                 yourself!
                             </p>
                         </div>
@@ -114,7 +131,9 @@ const LandingPage = ({
                                     type="text"
                                     placeholder="Handsome"
                                     value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
+                                    onChange={(e) =>
+                                        setUsername(e.target.value)
+                                    }
                                     required={true}
                                 />
                                 and I want to learn more about
@@ -144,16 +163,20 @@ const LandingPage = ({
             case Stage.Promise:
                 return (
                     <>
-                        <img src={grlHeart} alt="Your anime wifu showing hearts" className="h-[350px]" />
+                        <img
+                            src={grlHeart}
+                            alt="Your anime wifu showing hearts"
+                            className="h-[350px]"
+                        />
                         <div className="bg-[#B3A1CF]/50 w-9/12 border-4 text-2xl border-[#E3A6D1] py-6 mb-0 font-suse text-violet-900 text-bold px-6">
                             <p>
-                                Nice to meet you, {username}. Let's go on a study date together! Solve more questions,
-                                earn points, and unlock exclusive experiences with me!
+                                Nice to meet you, {username}. Let's go on a
+                                study date together! Solve more questions, earn
+                                points, and unlock exclusive experiences with
+                                me!
                             </p>
                         </div>
-                        <button
-                            className="bg-[#B3A1CF]/50 font-suse font-semibold text-violet-700 py-[10px] px-[40px] rounded-[30px] border-4 border-[#E3A6D1]"
-                        >
+                        <button className="bg-[#B3A1CF]/50 font-suse font-semibold text-violet-700 py-[10px] px-[40px] rounded-[30px] border-4 border-[#E3A6D1]">
                             <Link to="/problemset">Let's go!~</Link>
                         </button>
                     </>
@@ -173,7 +196,9 @@ const LandingPage = ({
                 .then(({ data }) => {
                     setUsername(data.username);
                 })
-                .catch((err) => console.error("Error fetching user data:", err));
+                .catch((err) =>
+                    console.error("Error fetching user data:", err)
+                );
         }
     }, [id, token]);
 
@@ -187,6 +212,11 @@ const LandingPage = ({
                 <div className="absolute circle-4-animation top-[10%] left-[50%] -translate-x-1/2 w-[200px] h-[200px] rounded-full filter blur-[99px] bg-gradient-to-br from-transparent to-red-200 opacity-60 z-10"></div>
                 <div className="absolute top-[20%] left-[47%] -translate-x-1/2 w-[600px] h-[500px] rounded-full filter blur-[99px] bg-gradient-to-br from-transparent to-orange-600 opacity-60 z-10"></div>
                 <div className="absolute circle-7-animation top-[10%] left-[50%] -translate-x-1/2 w-[400px] h-[400px] rounded-full filter blur-[99px] bg-gradient-to-br from-transparent to-orange-800 opacity-60 z-10"></div>
+                <div className="flex row">
+                    <img src={star} alt="star" className="h-100px]" />
+                    <br></br>
+                    <img src={star} alt="star" className="h-100px]" />
+                </div>
             </div>
 
             {/* Main content */}
